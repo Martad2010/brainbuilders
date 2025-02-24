@@ -1,0 +1,97 @@
+@font-face {
+  font-family: "Nexa";
+  src: url("/fonts/Nexa/Nexa-ExtraLight.ttf");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nexa";
+  src: url("/fonts/Nexa/Nexa Light.otf");
+  font-weight: light;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nexa";
+  src: url("/fonts/Nexa/Nexa Bold.otf");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nexa";
+  src: url("/fonts/Nexa/Nexa-Heavy.ttf");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-Light";
+  src: url("/fonts/Satoshi/Satoshi-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-LightItalic";
+  src: url("/fonts/Satoshi/Satoshi-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi-Regular";
+  src: url("/fonts/Satoshi/Satoshi-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-Italic";
+  src: url("/fonts/Satoshi/Satoshi-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi-Medium";
+  src: url("/fonts/Satoshi/Satoshi-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-MediumItalic";
+  src: url("/fonts/Satoshi/Satoshi-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi-Bold";
+  src: url("/fonts/Satoshi/Satoshi-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-BoldItalic";
+  src: url("/fonts/Satoshi/Satoshi-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Satoshi-Black";
+  src: url("/fonts/Satoshi/Satoshi-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi-BlackItalic";
+  src: url("/fonts/Satoshi/Satoshi-BlackItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+}
