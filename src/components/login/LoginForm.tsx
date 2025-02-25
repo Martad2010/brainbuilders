@@ -69,7 +69,7 @@ const LoginForm = () => {
             toast.error(errMsg);
           }
         } else toast.error(message);
-      }
+      } else toast.error(message);
     }
     setLoading(false);
   };

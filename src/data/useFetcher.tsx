@@ -81,30 +81,30 @@ export const apiCall = async ({
 			if (error?.response?.status === 429) toast.error(error?.response?.data);
 			const err = error as AxiosError;
 			if (err?.response?.data) {
-				if ((type && type !== "get") || (type && type === "get" && noToast)) {
-					let { error: errors }: resErr = err?.response?.data;
-					if (errors && errors?.length > 1) {
-						return { errArr: errors };
-					} else {
-						let errMsg =
-								error?.response?.data?.message ||
-								error?.response?.data?.error?.[0]?.message ||
-								error?.response?.data?.error?.[0]?.msg ||
-								error?.message,
-							possibleLogout: string[] = [
-								"Invalid Authentication, Unauthorized User",
-								"Unauthorized User, User not found",
-							];
+        if ((type && type !== "get") || (type && type === "get" && noToast)) {
+          let { error: errors }: resErr = err?.response?.data;
+          if (errors && errors?.length > 1) {
+            return { errArr: errors };
+          } else {
+            let errMsg =
+                error?.response?.data?.message ||
+                error?.response?.data?.error?.[0]?.message ||
+                error?.response?.data?.error?.[0]?.msg ||
+                error?.message,
+              possibleLogout: string[] = [
+                "Invalid Authentication, Unauthorized User",
+                "Unauthorized User, User not found",
+              ];
 
-						if (possibleLogout?.includes(errMsg)) {
-							localStorage.clear();
-							window.location.reload();
-						} else return { errMsg };
-					}
-				}
-				return { errMsg: "" };
-			}
-			return { errMsg: "" };
+            if (possibleLogout?.includes(errMsg)) {
+              localStorage.clear();
+              window.location.reload();
+            } else return { errMsg };
+          }
+        }
+        return { errMsg: message };
+      }
+      return { errMsg: message };
 		} else {
 			return { errMsg: message };
 		}
