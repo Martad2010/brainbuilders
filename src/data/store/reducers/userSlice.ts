@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { SetAuthToken, SetDefaultHeaders, TOKEN } from "../../Config";
 import axios, { AxiosError, isAxiosError } from "axios";
@@ -47,10 +48,10 @@ const UserSlice = createSlice({
       state.loading = false;
     },
     getDynamicLogger: (state, { payload }: PayloadAction<any>) => {
-      let data = payload?.data || payload,
-        prop: string = payload?.prop;
+      let data = payload?.data || payload;
+      const prop: string = payload?.prop;
       if (prop) {
-        let newData = { ...data };
+        const newData = { ...data };
         delete newData?.prop;
 
         data = newData;
@@ -112,12 +113,12 @@ export const loadUser = createAsyncThunk(
           if (error) console.log({ error: error?.response?.data, err: error });
           const err = error as AxiosError;
           if (err?.response?.data) {
-            let { error: errors, message: message2 }: resErr =
+            const { error: errors, message: message2 }: resErr =
               err?.response?.data;
             if (errors && errors?.length > 1) {
               console.log({ errArr: errors });
             } else {
-              let errMsg =
+              const errMsg =
                   error?.response?.data?.message ||
                   error?.response?.data?.error?.[0]?.message ||
                   error?.response?.data?.error?.[0]?.msg ||

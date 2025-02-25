@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface TabType {
   id: number;
   title: string;
@@ -67,6 +68,7 @@ type initType = {
   [key: string]: any;
 };
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const apiMethodType = [
   "get",
   "post",

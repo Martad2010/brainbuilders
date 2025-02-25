@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useAppDispatch } from "@/data/store/hooks";
 import { returnErrors } from "@/data/store/reducers/errorReducer";
 import { loadUser, login } from "@/data/store/reducers/userSlice";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import axios, { AxiosError, isAxiosError } from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,15 +14,13 @@ import Button from "../utils/Button";
 
 const LoginForm = () => {
   const [isRememberMeChecked, setIsRememberMeChecked] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
-
   const navigate = useRouter(),
     init = {
       password: "",
     },
     [state, setState] = useState<any>(init),
     textChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      let { name, value } = e.target;
+      const { name, value } = e.target;
       setState((prev: any) => {
         return { ...prev, [name]: value };
       });
@@ -39,8 +37,8 @@ const LoginForm = () => {
 
     setLoading(true);
     try {
-      let newState = state;
-      let res = await axios.post(`/api/v1/auth/login`, { ...newState });
+      const newState = state;
+      const res = await axios.post(`/api/v1/auth/login`, { ...newState });
       console.log({ resp: res?.data });
       toast.success(res?.data?.message);
       dispatch(login(res?.data?.data));
@@ -54,13 +52,13 @@ const LoginForm = () => {
         if (error?.response?.status === 429) toast.error(error?.response?.data);
         const err = error as AxiosError;
         if (err?.response?.data) {
-          let { error: errors }: resErr = err?.response?.data;
+          const { error: errors }: resErr = err?.response?.data;
           if (errors && errors?.length > 1) {
             dispatch(
               returnErrors({ error: errors, status: err?.response?.status }),
             );
           } else {
-            let errMsg =
+            const errMsg =
               error?.response?.data?.message ||
               error?.response?.data?.error?.[0]?.message ||
               error?.response?.data?.error?.[0]?.msg ||

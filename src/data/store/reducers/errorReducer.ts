@@ -7,11 +7,11 @@ type initErrType = {
 	errorText?: string;
 };
 
-let initialState: initErrType = {
-	error: null,
-	id: "",
-	status: null,
-	errorText: "",
+const initialState: initErrType = {
+  error: null,
+  id: "",
+  status: null,
+  errorText: "",
 };
 
 export const errorSlice = createSlice({
