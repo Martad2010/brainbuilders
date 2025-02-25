@@ -1,12 +1,79 @@
 "use client";
+import { useAppDispatch } from "@/data/store/hooks";
+import { returnErrors } from "@/data/store/reducers/errorReducer";
+import { loadUser, login } from "@/data/store/reducers/userSlice";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+import axios, { AxiosError, isAxiosError } from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { PasswordInput } from "../signup/SignupForm";
+import Button from "../utils/Button";
 
 const LoginForm = () => {
   const [isRememberMeChecked, setIsRememberMeChecked] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useRouter(),
+    init = {
+      password: "",
+    },
+    [state, setState] = useState<any>(init),
+    textChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      let { name, value } = e.target;
+      setState((prev: any) => {
+        return { ...prev, [name]: value };
+      });
+    },
+    [loading, setLoading] = useState(false),
+    dispatch = useAppDispatch();
+
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e?.preventDefault();
+    if (!state?.username || !state?.password)
+      return toast.info("Please fill out all fields");
+
+    setLoading(true);
+    try {
+      let newState = state;
+      let res = await axios.post(`/api/v1/auth/login`, { ...newState });
+      console.log({ resp: res?.data });
+      toast.success(res?.data?.message);
+      dispatch(login(res?.data?.data));
+      dispatch(loadUser());
+      navigate.push("/");
+    } catch (error) {
+      let message = "Unknown Error";
+      if (error instanceof Error) message = error.message;
+      if (isAxiosError(error)) {
+        if (error) console.log({ error: error?.response?.data, err: error });
+        if (error?.response?.status === 429) toast.error(error?.response?.data);
+        const err = error as AxiosError;
+        if (err?.response?.data) {
+          let { error: errors }: resErr = err?.response?.data;
+          if (errors && errors?.length > 1) {
+            dispatch(
+              returnErrors({ error: errors, status: err?.response?.status }),
+            );
+          } else {
+            let errMsg =
+              error?.response?.data?.message ||
+              error?.response?.data?.error?.[0]?.message ||
+              error?.response?.data?.error?.[0]?.msg ||
+              error?.message;
+
+            toast.error(errMsg);
+          }
+        } else toast.error(message);
+      }
+    }
+    setLoading(false);
+  };
+
   return (
     <div
       className="mb-20 mt-10 w-full rounded-[10px] bg-white px-4 py-7 md:w-[563px] md:px-8"
@@ -29,29 +96,16 @@ const LoginForm = () => {
           id="tel"
           type="tel"
           className="mb-5 h-12 w-full rounded-md bg-[#FAFAFA] px-4 outline-none"
+          name="username"
+          value={state?.username}
+          onChange={textChange}
         />
         <label htmlFor="password" className="text-sm font-bold text-[#002724]">
           PASSWORD
         </label>
         <br />
-        <div className="relative mb-5">
-          <input
-            id="confirm-new-password"
-            type={showPassword ? "text" : "password"}
-            className="h-12 w-full rounded-md bg-[#FAFAFA] px-4 pr-12 outline-none"
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 transform cursor-pointer"
-          >
-            {showPassword ? (
-              <EyeSlashIcon className="h-6 w-6 text-gray-400" />
-            ) : (
-              <EyeIcon className="h-6 w-6 text-gray-400" />
-            )}
-          </button>
-        </div>
+        <PasswordInput name="password" state={state} textChange={textChange} />
+
         <div className="mt-5 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div
@@ -77,9 +131,17 @@ const LoginForm = () => {
             Forget Password?
           </Link>
         </div>
-        <button className="mt-14 w-full rounded-md bg-[#04C323] py-3 font-black text-white">
+        {/* <button className="mt-14 w-full rounded-md bg-[#04C323] py-3 font-black text-white">
           Sign In
-        </button>
+        </button> */}
+        <Button
+          type="submit"
+          className="mt-14 w-full rounded-md bg-[#04C323] py-3 font-black text-white"
+          onClick={handleSubmit}
+          isLoading={loading}
+        >
+          Sign In
+        </Button>
         {/* <button className="mb-8 mt-4 flex w-full items-center justify-center gap-3 rounded-md border border-[#04C323] bg-transparent py-3 font-black text-[#002724] md:mt-12">
           <Image
             src={"/images/google.svg"}
