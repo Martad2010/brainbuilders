@@ -2,9 +2,11 @@
 import Image from "next/image";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import { PurifiedText } from "../about";
 
 export const Contact = () => {
-  const [isTermsChecked, setIsTermsChecked] = useState(false);
+  const [isTermsChecked, setIsTermsChecked] = useState(false),
+    [type, setType] = useState("");
   return (
     <main className="">
       <div className="contacts-bg flex min-h-[932px] px-0 pb-6 md:min-h-screen md:pb-14 lg:px-12 lg:pb-0">
@@ -102,7 +104,7 @@ export const Contact = () => {
         </div>
       </div>
       <div className="satoshi contacts-form-bg container flex items-center justify-center gap-24 px-2 lg:px-12">
-        <div className="flex flex-col md:flex-row gap-10 lg:gap-40 py-20">
+        <div className="flex flex-col gap-10 py-20 md:flex-row lg:gap-40">
           <div className="shrink-0">
             <h1 className="text-2xl font-semibold">HOW CAN WE HELP YOU?</h1>
             <p className="mt-2.5 text-xl">
@@ -155,8 +157,9 @@ export const Contact = () => {
               />
               <span className="satoshi text-xm text-black">Exam_Prime</span>
             </div>
+            <PurifiedText type={type} setType={setType} section={"contact"} />
           </div>
-          <form className="w-full md:w-[400px] space-y-6">
+          <form className="w-full space-y-6 md:w-[400px]">
             <input
               type="text"
               className="h-12 w-full rounded-lg bg-zinc-50 px-4 pr-12 text-sm text-black shadow-sm outline-none"

@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { copyToClipboard } from "@/components/utils/copyToClipboard";
+import { useAppSelector } from "@/data/store/hooks";
+import { authUserSelector } from "@/data/store/selectors/userSelector";
 import Image from "next/image";
 import { ToastContainer } from "react-toastify";
 
 export const Referrals = () => {
-  const code = "DDDAYU892";
+  const code = "DDDAYU892",
+    { user } = useAppSelector(authUserSelector);
 
   return (
     <main
@@ -37,10 +41,12 @@ export const Referrals = () => {
             </p>
             <div className="flex items-center gap-2">
               <div className="flex h-[42px] w-[200px] items-center rounded bg-white pl-5 text-lg font-bold text-black outline-none md:w-[258px]">
-                {code}
+                {(user as any)?.referralCode || code}
               </div>
               <button
-                onClick={() => copyToClipboard(code)}
+                onClick={() =>
+                  copyToClipboard((user as any)?.referralCode || code)
+                }
                 className="ml-5 h-[31px] w-[113px] rounded-[3px] bg-[#F17700] font-bold text-white"
               >
                 Copy code

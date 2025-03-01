@@ -1,4 +1,9 @@
+"use client";
+import { useState } from "react";
+import { PurifiedText } from "../about";
+
 export const Policy = () => {
+  const [type, setType] = useState("");
   return (
     <main>
       <div className="policy-bg flex h-[392px] w-full items-center justify-center">
@@ -7,38 +12,50 @@ export const Policy = () => {
         </h1>
       </div>
       <div className="container flex w-full justify-center pb-8 pt-10 md:pt-20">
-        <div className="w-full xl:w-[60%] px-0 lg:px-12">
-          <p
+        <div className="w-full px-0 lg:px-12 xl:w-[60%]">
+          <PurifiedText
+            type={type}
+            setType={setType}
+            section={"policy"}
             className="font-switch font-normal text-[#4A4E4F] md:font-black"
-            style={{
-              marginTop: "10px",
-            }}
-          >
-            Ipsum dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-            amet, consectetur adipiscing elit, Ipsum dolor sit amet, consectetur
-            adipiscing elit, ipsum dolor sit amet, consectetur adipiscing elit,
-            Ipsum dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-            amet, consectetur adipiscing elit, Ipsum dolor sit amet, consectetur
-            adipiscing elit, ipsum dolor sit amet, consectetur adipiscing elit,
-            Ipsum dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-            amet, consectetur adipiscing elit, Ipsum dolor sit amet, consec
-          </p>
-          <p className="font-switch mt-3 font-normal text-[#4A4E4F] md:font-black">
-            dipiscing elit, Ipsum dolor sit amet, consectetur adipiscing elit,
-            ipsum dolor sit amet, consectetur adipiscing elit, Ipsum dolor sit
-            amet, consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-            adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing elit,
-            ipsum dolor sit amet, consectetur adipiscing elit, Ipsum dolor sit
-            amet, consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-            adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing elit,
-            ipsum dolor sit amet, consectetur adipiscing elit, Ipsum dolor sit
-            amet, consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-            adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing elit,
-            ipsum dolor sit amet, consectetur adipiscing elit, Ipsum dolor sit
-            amet, consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-            adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing elit,
-            ipsum dolor sit{" "}
-          </p>
+          />
+          {!type && (
+            <>
+              <p
+                className="font-switch font-normal text-[#4A4E4F] md:font-black"
+                style={{
+                  marginTop: "10px",
+                }}
+              >
+                Ipsum dolor sit amet, consectetur adipiscing elit, ipsum dolor
+                sit amet, consectetur adipiscing elit, Ipsum dolor sit amet,
+                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
+                adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
+                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
+                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
+                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
+                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
+                adipiscing elit, Ipsum dolor sit amet, consec
+              </p>
+              <p className="font-switch mt-3 font-normal text-[#4A4E4F] md:font-black">
+                dipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
+                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
+                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
+                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
+                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
+                adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
+                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
+                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
+                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
+                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
+                adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
+                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
+                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
+                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
+                consectetur adipiscing elit, ipsum dolor sit{" "}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </main>
