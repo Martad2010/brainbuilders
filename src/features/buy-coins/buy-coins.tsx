@@ -1,10 +1,19 @@
 "use client";
 import { coins } from "@/data/constants";
+import { useAppSelector } from "@/data/store/hooks";
+import { authUserSelector } from "@/data/store/selectors/userSelector";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export const BuyCoins = () => {
-  const router = useRouter();
+  const { isAuth } = useAppSelector(authUserSelector),
+    router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) router.push("/login");
+  }, [isAuth, router]);
+
   return (
     <main
       className="min-h-screen w-full px-0 md:px-12"
@@ -37,7 +46,9 @@ export const BuyCoins = () => {
             {coins.map((item) => (
               <div
                 key={item.id}
-                onClick={() => router.push("/payment-mode")}
+                onClick={() =>
+                  item?.link ? window.open(item?.link, "_blank") : {}
+                }
                 className="flex h-[141px] w-[139px] cursor-pointer flex-col items-center justify-center rounded-[11px] border-[3px] border-[#0B2239] md:w-[211px]"
                 style={{
                   backgroundImage: "url('/images/coins-bg.svg')",

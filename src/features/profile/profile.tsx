@@ -1,7 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import { profileActions } from "@/data/constants";
+import { useAppSelector } from "@/data/store/hooks";
+import { authUserSelector } from "@/data/store/selectors/userSelector";
+import moment from "moment";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export const Profile = () => {
+  const { isAuth, user } = useAppSelector(authUserSelector),
+    router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) router.push("/login");
+  }, [isAuth, router]);
+
   return (
     <main
       className="flex min-h-screen px-0 lg:px-12"
@@ -17,7 +31,7 @@ export const Profile = () => {
           <div className="shrink-0">
             <div className="flex items-center justify-center md:items-start md:justify-start">
               <Image
-                src={"/images/profile-dp.png"}
+                src={user?.image?.url || "/images/profile-dp.png"}
                 alt="profile image"
                 width={207}
                 height={210}
@@ -29,11 +43,18 @@ export const Profile = () => {
               <p className="text-xl font-bold text-[#0B2239]">
                 Personal Information
               </p>
-              <p className="font-bold text-[#4A4E4F]">Name: Abdul Rauf</p>
               <p className="font-bold text-[#4A4E4F]">
-                Email: abdulrauf344@gmail.com
+                Name: {user?.firstName} {user?.lastName}
               </p>
-              <p className="font-bold text-[#4A4E4F]">D.O.B: 18 - 94 - 2004</p>
+              <p className="font-bold text-[#4A4E4F]">
+                Email: {user?.email || (user as any)?.createdBy?.email}
+              </p>
+              <p className="font-bold text-[#4A4E4F]">
+                D.O.B:{" "}
+                {(user as any)?.dob
+                  ? moment((user as any)?.dob).format("DD-MM-YYYY")
+                  : null}
+              </p>
             </div>
             {/* privacy settings */}
             <div className="mt-7">
@@ -55,9 +76,11 @@ export const Profile = () => {
           <div className="w-full">
             <div className="hidden md:block">
               <h1 className="text-[32px] font-bold text-[#0B2239]">
-                Abdul Rauf
+                {user?.firstName} {user?.lastName}
               </h1>
-              <p className="font-bold text-[#4A4E4F]">abdulrauf344@gmail.com</p>
+              <p className="font-bold text-[#4A4E4F]">
+                {user?.email || (user as any)?.createdBy?.email}
+              </p>
               <div className="flex items-center gap-2">
                 <p className="font-bold text-[#4A4E4F]">Level:</p>
                 <Image
@@ -70,9 +93,15 @@ export const Profile = () => {
             </div>
             <div className="mt-1 grid grid-cols-2 items-center gap-6 font-bold md:mt-9 md:flex md:gap-8">
               <button className="h-[54px] rounded-lg bg-[#F17700] px-0 text-white md:px-[41px]">
-                <span className="text-lg md:text-2xl">13</span> coins left
+                <span className="text-lg md:text-2xl">
+                  {(user as any)?.points}
+                </span>{" "}
+                coins left
               </button>
-              <button className="h-[54px] rounded-lg bg-[#32A350] px-0 text-white md:px-[41px]">
+              <button
+                onClick={() => router.push("/buy-coins")}
+                className="h-[54px] rounded-lg bg-[#32A350] px-0 text-white md:px-[41px]"
+              >
                 Buy coins
               </button>
             </div>
@@ -80,6 +109,9 @@ export const Profile = () => {
               {profileActions.map((action) => (
                 <button
                   key={action.id}
+                  // onClick={() => {
+                  //   if (action?.href) router.push(action?.href);
+                  // }}
                   className="w-full rounded-[9px] bg-white py-2 text-base font-bold text-[#4A4E4F] md:text-xl"
                   style={{
                     boxShadow: "0px 2px 2.8px 0px rgba(0, 0, 0, 0.15)",

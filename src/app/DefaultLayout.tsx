@@ -6,6 +6,7 @@ import store from "@/data/store/store";
 import { SetAuthToken, SetDefaultHeaders, TOKEN } from "@/data/Config";
 import { loadUser } from "@/data/store/reducers/userSlice";
 import { useEffect } from "react";
+import DataProvider from "@/data/Context";
 
 SetDefaultHeaders();
 
@@ -27,7 +28,9 @@ export default function DefaultRootLayout({
     <>
       <ToastContainer position="top-right" theme="colored" transition={Zoom} />
 
-      <Provider store={store}>{children}</Provider>
+      <Provider store={store}>
+        <DataProvider>{children}</DataProvider>
+      </Provider>
     </>
   );
 }

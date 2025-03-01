@@ -179,3 +179,25 @@ export const {
   getDynamicLogger: getDynamicSocketLogger,
   resetDynamicLogger: resetDynamicSocketLogger,
 } = socketSlice.actions;
+
+
+// Category
+export const categorySlice = new LoggerSlice({
+	name: "category",
+}).createSlice();
+
+export const {
+	loggerFail: categoryFail,
+	getLogger: getCategory,
+	getSearchLogger: getSearchCategory,
+	getSearch: getSearchCategoryValue,
+	resetLoggerSearch: resetCategorySearch,
+	resetState: logoutCategory,
+	addLogger: addCategory,
+	getDynamicLogger: getDynamicCategoryLogger,
+	deleteLogger: deleteCategory,
+	editLogger: editCategory,
+	addDynamicLogger: addDynamicCategoryLogger,
+	editDynamicLogger: editDynamicCategoryLogger,
+	resetDynamicLogger: resetDynamicCategoryLogger,
+} = categorySlice.actions;

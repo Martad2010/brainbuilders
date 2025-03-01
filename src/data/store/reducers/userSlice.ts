@@ -4,6 +4,8 @@ import { SetAuthToken, SetDefaultHeaders, TOKEN } from "../../Config";
 import axios, { AxiosError, isAxiosError } from "axios";
 import { getErrorText } from "./errorReducer";
 import { toast } from "react-toastify";
+import { apiCall } from "@/data/useFetcher";
+import { getDynamicCategoryLogger } from "./LoggerSlice";
 
 interface UserState {
   isAuth: boolean;
@@ -105,6 +107,14 @@ export const loadUser = createAsyncThunk(
 
         const userData = (await res.data.data) satisfies UserType;
         thunkApi.dispatch(getUserDetails(res?.data));
+        apiCall({
+          type: "get",
+          url: `/api/v1/category?_populate=image&_limit=0`,
+          getter: (d: any) =>
+            thunkApi.dispatch(
+              getDynamicCategoryLogger({ ...d, prop: "category" }),
+            ),
+        });
         return userData;
       } catch (error) {
         let message = "Unknown Error";

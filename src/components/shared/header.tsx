@@ -1,18 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { mobileNavLinks, navLinks } from "@/data/constants";
 import Image from "next/image";
 import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useClickOutside } from "../hooks/useOutsideClick";
+import { useAppSelector } from "@/data/store/hooks";
+import { authUserSelector } from "@/data/store/selectors/userSelector";
 
 const Header = () => {
   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
   const dropdownRef = useClickOutside(() => setShowMoreDropdown(false));
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const isAuthenticated = false;
+  // const isAuthenticated = false;
   const pathname = usePathname();
-  const router = useRouter();
+  const router = useRouter(),
+    { isAuth, user } = useAppSelector(authUserSelector);
   return (
     <header className="fixed top-0 z-50 flex h-16 w-full items-center bg-white px-4 xl:px-12">
       <div className="container">
@@ -28,7 +33,19 @@ const Header = () => {
           <ul className="hidden items-center gap-8 xl:flex">
             {navLinks.map((navLink) => (
               <li key={navLink.id}>
-                {navLink.type === "link" ? (
+                {navLink?.type === "scroll" ? (
+                  <ScrollLink
+                    style={{
+                      textDecoration: "none !important",
+                    }}
+                    to={navLink.href.substring(1)}
+                    smooth={true}
+                    duration={500}
+                    className={`${pathname === navLink.href ? "text-[#F17700]" : "text-[#118E96]"} cursor-pointer font-bold`}
+                  >
+                    {navLink?.name}
+                  </ScrollLink>
+                ) : navLink.type === "link" ? (
                   <Link
                     href={navLink.href}
                     className={`${pathname === navLink.href ? "text-[#F17700]" : "text-[#118E96]"} font-bold`}
@@ -51,7 +68,7 @@ const Header = () => {
                       />
                     </div>
                     <div
-                      className={`absolute top-12 z-20 w-[250px] transform gap-7 rounded-xl bg-[#FAFAFA] px-6 py-4 transition-opacity duration-500 ease-in flex flex-col ${showMoreDropdown ? "visible translate-y-0 opacity-100" : "invisible -translate-y-4 opacity-0"}`}
+                      className={`absolute top-12 z-20 flex w-[250px] transform flex-col gap-7 rounded-xl bg-[#FAFAFA] px-6 py-4 transition-opacity duration-500 ease-in ${showMoreDropdown ? "visible translate-y-0 opacity-100" : "invisible -translate-y-4 opacity-0"}`}
                     >
                       {navLink.options.map((option) => (
                         <Link key={option.id} href={option.href} legacyBehavior>
@@ -69,10 +86,10 @@ const Header = () => {
               </li>
             ))}
           </ul>
-          {isAuthenticated ? (
+          {isAuth ? (
             <button
               onClick={() => router.push("/profile")}
-              className="hidden h-11 w-[175px] rounded-md bg-[#118E96] font-black text-white xl:flex"
+              className="hidden h-11 w-[175px] items-center justify-center rounded-md bg-[#118E96] font-black text-white xl:flex"
             >
               My Account
             </button>
@@ -126,67 +143,93 @@ const Header = () => {
             </div>
 
             {/* Profile Section */}
-            <div
-              onClick={() => router.push("/profile")}
-              className="/* Layout & Spacing */ /* Background & Shape */ /* Padding */ mt-8 flex items-center gap-6 rounded-lg bg-white p-4"
-            >
-              <div className="shrink-0">
-                <Image
-                  src={"/images/user-profile.svg"}
-                  alt="user dp"
-                  width={56}
-                  height={56}
-                  className="h-[56px] w-[56px] rounded-full object-cover"
-                />
+            {isAuth && (
+              <div
+                onClick={() => router.push("/profile")}
+                className="/* Layout & Spacing */ /* Background & Shape */ /* Padding */ mt-8 flex items-center gap-6 rounded-lg bg-white p-4"
+              >
+                <div className="shrink-0">
+                  <Image
+                    src={user?.image?.url || "/images/user-profile.svg"}
+                    alt="user dp"
+                    width={56}
+                    height={56}
+                    className="h-[56px] w-[56px] rounded-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="satoshi font-medium text-black">
+                    {user?.firstName} {user?.lastName}
+                  </p>
+                  <p className="satoshi text-[13px] text-[#4A4E4F]">
+                    {user?.email || (user as any)?.createdBy?.email}
+                  </p>
+                </div>
               </div>
-              <div>
-                <p className="satoshi font-medium text-black">Abdul Rauf</p>
-                <p className="satoshi text-[13px] text-[#4A4E4F]">
-                  abdulrauf344@gmail.com
-                </p>
-              </div>
-            </div>
+            )}
 
             {/* Navigation Links */}
             <ul className="mt-4 flex flex-col gap-[30px]">
               {mobileNavLinks.map((navLink) => (
                 <li key={navLink.id}>
-                  <Link
-                    href={navLink.href}
-                    className={`satoshi font-medium ${
-                      pathname === navLink.href
-                        ? "text-[#F17700]"
-                        : "text-black"
-                    }`}
-                  >
-                    {navLink.name}
-                  </Link>
+                  {navLink?.type === "scroll" ? (
+                    <ScrollLink
+                      style={{
+                        textDecoration: "none !important",
+                      }}
+                      to={navLink.href.substring(1)}
+                      smooth={true}
+                      duration={500}
+                      className={`satoshi cursor-pointer font-medium ${
+                        pathname === navLink.href
+                          ? "text-[#F17700]"
+                          : "text-black"
+                      }`}
+                    >
+                      {navLink?.name}
+                    </ScrollLink>
+                  ) : (
+                    <Link
+                      href={navLink.href}
+                      className={`satoshi font-medium ${
+                        pathname === navLink.href
+                          ? "text-[#F17700]"
+                          : "text-black"
+                      }`}
+                    >
+                      {navLink.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
 
             {/* Action Buttons */}
-            <button
-              onClick={() => router.push("/login")}
-              className={`mt-[30px] w-full rounded-[20px] border py-[10px] font-black ${
-                pathname === "/login"
-                  ? "border-[#F17700] text-[#F17700]"
-                  : "border-[#BBC42F] text-black"
-              } `}
-            >
-              Login
-            </button>
+            {!isAuth && (
+              <>
+                <button
+                  onClick={() => router.push("/login")}
+                  className={`mt-[30px] w-full rounded-[20px] border py-[10px] font-black ${
+                    pathname === "/login"
+                      ? "border-[#F17700] text-[#F17700]"
+                      : "border-[#BBC42F] text-black"
+                  } `}
+                >
+                  Login
+                </button>
 
-            <button
-              onClick={() => router.push("/signup")}
-              className={`mt-[30px] w-full rounded-[20px] border py-[10px] font-black ${
-                pathname === "/signup"
-                  ? "border-[#F17700] text-[#F17700]"
-                  : "border-[#BBC42F] text-black"
-              } `}
-            >
-              Sign-up for Free
-            </button>
+                <button
+                  onClick={() => router.push("/signup")}
+                  className={`mt-[30px] w-full rounded-[20px] border py-[10px] font-black ${
+                    pathname === "/signup"
+                      ? "border-[#F17700] text-[#F17700]"
+                      : "border-[#BBC42F] text-black"
+                  } `}
+                >
+                  Sign-up for Free
+                </button>
+              </>
+            )}
           </div>
         </nav>
       </div>

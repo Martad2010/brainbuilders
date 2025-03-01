@@ -29,3 +29,8 @@ export const errorsSelector = createSelector([errorsSlicer], error => error);
 const socketSlicer = (s: RootState) => s?.socket;
 
 export const socketSelector = createSelector([socketSlicer], d => d);
+
+// Category
+const categorySlicer = (s: RootState) => s?.category;
+
+export const categorySelector = createSelector([categorySlicer], d => d);

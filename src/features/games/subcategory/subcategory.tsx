@@ -1,8 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import { subcategory } from "@/data/constants";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCategorySubCategoryNavigator } from "../category";
 
 export const SubCategory = () => {
+  const router = useRouter(),
+    { list, setLocationState } = useCategorySubCategoryNavigator({
+      type: "subCategory",
+    });
+
   return (
     <main
       className="min-h-screen w-full px-0 pb-[90px] pt-[96px] md:px-12"
@@ -32,21 +40,38 @@ export const SubCategory = () => {
             Select a sub category
           </div>
           <div className="my-11 grid grid-cols-2 gap-16 xl:grid-cols-4">
-            {subcategory.map((item) => (
-              <div key={item.id} className="flex flex-col items-center gap-y-2 xl:gap-y-7">
+            {list?.map((item: any, i: number) => (
+              <div
+                key={i}
+                className="flex flex-col items-center gap-y-2 xl:gap-y-7"
+              >
                 <Image
-                  src={item.src}
-                  alt={item.name}
+                  src={
+                    item?.image?.url ||
+                    subcategory?.[i % subcategory?.length]?.src
+                  }
+                  alt={item?.name}
                   width={1080}
                   height={1080}
                   className="h-[85px] w-[85px] rounded-full object-cover md:h-[180px] md:w-[180px]"
                 />
-                <Link
+                {/* <Link
                   href={"/games/level"}
                   className="rounded-[5px] bg-[#0B2239] px-8 py-1 text-center text-[10px] font-bold text-white md:text-[22px] xl:px-10 xl:py-3"
                 >
                   {item.name}
-                </Link>
+                </Link> */}
+                <button
+                  onClick={() => {
+                    setLocationState((prev: any) => {
+                      return { ...prev, subCategory: item?._id };
+                    });
+                    router.push("/games/level");
+                  }}
+                  className="cursor-pointer rounded-[5px] bg-[#0B2239] px-8 py-1 text-center text-[10px] font-bold capitalize text-white md:text-[22px] xl:px-10 xl:py-3"
+                >
+                  {item?.name}
+                </button>
               </div>
             ))}
           </div>

@@ -1,13 +1,21 @@
 "use client";
+import { GlobalState } from "@/data/Context";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useContext, useState } from "react";
+import FunAndLearnModal from "../modal/FunAndLearnModal";
+import { useAppSelector } from "@/data/store/hooks";
+import { authUserSelector } from "@/data/store/selectors/userSelector";
 
 const LearningSection = () => {
-  const router = useRouter();
+  const router = useRouter(),
+    { setLocationState } = useContext(GlobalState),
+    [isFunAndLearn, setIsFunAndLearn] = useState(false),
+    { isAuth } = useAppSelector(authUserSelector);
   return (
     <section
-      className="flex min-h-[870px] w-full flex-col items-center xl:min-h-screen xl:max-h-[870px]"
+      id="main"
+      className="flex min-h-[870px] w-full flex-col items-center xl:max-h-[870px] xl:min-h-screen"
       style={{
         background: 'url("/images/overview-learn-bg.svg")',
         backgroundSize: "cover",
@@ -16,7 +24,7 @@ const LearningSection = () => {
       }}
     >
       <button
-        onClick={() => router.push("/games/category")}
+        // onClick={() => router.push("/games/category")}
         className="mt-12 cursor-pointer rounded-[40px] bg-white px-[50px] py-[9px] text-[22px] font-bold text-[#118E96] md:text-[32px] xl:mt-8"
         style={{
           boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.20)",
@@ -25,7 +33,17 @@ const LearningSection = () => {
         Click to Learn
       </button>
       <div className="mt-[83px] flex w-fit flex-wrap items-center justify-center gap-[18px] lg:mt-[60px]">
-        <div className="relative">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => {
+            if (isAuth) setIsFunAndLearn(true);
+            else router.push("/login");
+          }}
+          // onClick={() => {
+          //   setLocationState({ type: "funAndLearn" });
+          //   router.push("/games/category");
+          // }}
+        >
           <Image
             src={"/images/learnA.svg"}
             alt="learn"
@@ -50,17 +68,22 @@ const LearningSection = () => {
               height={55}
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
-            <div
-              onClick={() => router.push("/games/subcategory")}
-              className="absolute inset-0 flex cursor-pointer items-center justify-center"
-            >
+            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
               <p className="text-[12px] font-bold text-white lg:text-base">
                 PLAY NOW
               </p>
             </div>
           </div>
         </div>
-        <div className="relative">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => {
+            if (isAuth) {
+              setLocationState({ type: "trueOrFalse" });
+              router.push("/games/category");
+            } else router.push("/login");
+          }}
+        >
           {/* mobile image */}
           <Image
             src={"/images/mobile-learn-B.svg"}
@@ -94,17 +117,22 @@ const LearningSection = () => {
               height={55}
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
-            <div
-              onClick={() => router.push("/games/subcategory")}
-              className="absolute inset-0 flex cursor-pointer items-center justify-center"
-            >
+            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
               <p className="text-[12px] font-bold text-white lg:text-base">
                 PLAY NOW
               </p>
             </div>
           </div>
         </div>
-        <div className="relative">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => {
+            if (isAuth) {
+              setLocationState({ type: "mathQuiz" });
+              router.push("/games/category");
+            } else router.push("/login");
+          }}
+        >
           {/* mobile view */}
           <Image
             src={"/images/mobile-learn-C.svg"}
@@ -138,17 +166,22 @@ const LearningSection = () => {
               height={55}
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
-            <div
-              onClick={() => router.push("/games/subcategory")}
-              className="absolute inset-0 flex cursor-pointer items-center justify-center"
-            >
+            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
               <p className="text-[12px] font-bold text-white lg:text-base">
                 PLAY NOW
               </p>
             </div>
           </div>
         </div>
-        <div className="relative">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => {
+            if (isAuth) {
+              setLocationState({ type: "selfChallenge" });
+              router.push("/games/category");
+            } else router.push("/login");
+          }}
+        >
           <Image
             src={"/images/learnD.svg"}
             alt="learn"
@@ -173,10 +206,7 @@ const LearningSection = () => {
               height={55}
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
-            <div
-              onClick={() => router.push("/games/subcategory")}
-              className="absolute inset-0 flex cursor-pointer items-center justify-center"
-            >
+            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
               <p className="text-[12px] font-bold text-white lg:text-base">
                 PLAY NOW
               </p>
@@ -204,6 +234,7 @@ const LearningSection = () => {
           />
         </div>
       </div> */}
+      <FunAndLearnModal isOpen={isFunAndLearn} setIsOpen={setIsFunAndLearn} />
     </section>
   );
 };
