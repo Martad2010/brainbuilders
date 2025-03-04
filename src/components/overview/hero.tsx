@@ -1,10 +1,14 @@
 "use client";
+import { useAppSelector } from "@/data/store/hooks";
+import { authUserSelector } from "@/data/store/selectors/userSelector";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { Link as ScrollLink } from "react-scroll";
 
 const Hero = () => {
-  const router = useRouter();
+  const router = useRouter(),
+    { isAuth } = useAppSelector(authUserSelector);
   return (
     <section
       className="overview-hero-bg flex h-[932px] w-full flex-col justify-start px-4 md:h-[calc(100vh-64px)] md:max-h-[980px] md:justify-center lg:px-20"
@@ -22,15 +26,32 @@ const Hero = () => {
         <p className="text-base font-bold text-black md:text-[32px] lg:text-white">
           Test your skills | Win big
         </p>
-        <button
-          onClick={() => router.push("/login")}
-          className="mt-6 w-fit rounded-2xl bg-[#FE8601] px-[17px] py-[2px] text-base font-bold text-white md:mt-10 md:rounded-md md:text-xl md:text-[#002724]"
-          style={{
-            boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.25)",
-          }}
-        >
-          Get Started
-        </button>
+        {isAuth ? (
+          <div className="mt-6">
+            <ScrollLink
+              style={{
+                textDecoration: "none !important",
+                boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.25)",
+              }}
+              to={"main"}
+              smooth={true}
+              duration={500}
+              className="mt-6 w-fit cursor-pointer rounded-2xl bg-[#FE8601] px-[17px] py-[2px] text-base font-bold text-white md:mt-10 md:rounded-md md:text-xl md:text-[#002724]"
+            >
+              Get Started
+            </ScrollLink>
+          </div>
+        ) : (
+          <button
+            onClick={() => router.push("/login")}
+            className="mt-6 w-fit rounded-2xl bg-[#FE8601] px-[17px] py-[2px] text-base font-bold text-white md:mt-10 md:rounded-md md:text-xl md:text-[#002724]"
+            style={{
+              boxShadow: "0px 3px 4px 0px rgba(0, 0, 0, 0.25)",
+            }}
+          >
+            Get Started
+          </button>
+        )}
         <div className="mt-7 flex items-center gap-[14px] md:mt-12 md:gap-7">
           <div className="cursor-pointer">
             <Image

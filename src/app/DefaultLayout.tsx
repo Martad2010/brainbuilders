@@ -27,7 +27,6 @@ export default function DefaultRootLayout({
   return (
     <>
       <ToastContainer position="top-right" theme="colored" transition={Zoom} />
-
       <Provider store={store}>
         <DataProvider>{children}</DataProvider>
       </Provider>

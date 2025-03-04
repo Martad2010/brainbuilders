@@ -34,7 +34,7 @@ const SignUpForm = () => {
 
   const { isAuth } = useAppSelector(authUserSelector);
   useEffect(() => {
-    navigate.push("/");
+    if (isAuth) navigate.push("/");
   }, [isAuth, navigate]);
 
   const handleSubmit = async (

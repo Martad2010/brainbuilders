@@ -1,7 +1,25 @@
-import { scores } from "@/data/constants";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+// import { scores } from "@/data/constants";
+import { useAppDispatch, useAppSelector } from "@/data/store/hooks";
+import { getDynamicCategoryLogger } from "@/data/store/reducers/LoggerSlice";
+import {
+  authUserSelector,
+  categorySelector,
+} from "@/data/store/selectors/userSelector";
+import { apiCall, numberWithCommas } from "@/data/useFetcher";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export const Leaderboard = () => {
+  const { isAuth } = useAppSelector(authUserSelector),
+    router = useRouter();
+
+  useEffect(() => {
+    if (!isAuth) router.push("/login");
+  }, [isAuth, router]);
+
   return (
     <main>
       <div className="leaderboard-bg h-[302px] w-full"></div>
@@ -9,34 +27,65 @@ export const Leaderboard = () => {
         <h1 className="text-2xl font-bold text-black lg:text-5xl">
           Leaderboard
         </h1>
-        {scores.map((score) => (
-          <div
-            key={score.id}
-            className="flex h-[35px] items-center justify-between rounded-md bg-[linear-gradient(90deg,_#00336F_0%,_#000024_100%)] pl-4 pr-4 md:pl-20 lg:h-[74px]"
-          >
-            <div className="flex items-center gap-7 md:gap-[72px]">
-              <Image
-                src={"/images/ellipse.png"}
-                alt="user profile pic"
-                width={61}
-                height={61}
-                className="h-[27px] w-[27px] rounded-full lg:h-[61px] lg:w-[61px]"
-              />
-              <h2 className="text-center text-sm font-bold text-white lg:text-[26px]">
-                {score.name}
-              </h2>
-            </div>
-            <div className="flex items-center gap-7 md:gap-14">
-              <div className="flex h-[20px] w-[78px] items-center justify-center rounded-md bg-white text-sm font-bold text-[#1C1C1CB8]/60 lg:h-[41px] lg:w-[231px] lg:text-[26px]">
-                {score.score}
-              </div>
-              <div className="h-5 rounded-md bg-white px-2 text-sm font-bold text-[#1C1C1CB8]/60 lg:h-[41px] lg:text-[26px] flex items-center">
-                {score.rank}
-              </div>
-            </div>
-          </div>
-        ))}
+        <LeaderTable />
       </div>
     </main>
+  );
+};
+
+export const LeaderTable = () => {
+  const dispatch = useAppDispatch(),
+    { leaderboard }: any = useAppSelector(categorySelector),
+    { user } = useAppSelector(authUserSelector);
+
+  function getOrdinalSuffix(rank: number) {
+    if (rank % 10 === 1 && rank % 100 !== 11) return "st";
+    if (rank % 10 === 2 && rank % 100 !== 12) return "nd";
+    if (rank % 10 === 3 && rank % 100 !== 13) return "rd";
+    return "th";
+  }
+
+  useEffect(() => {
+    apiCall({
+      type: "get",
+      url: `/api/v1/leaderboard`,
+      getter: (d: any) =>
+        dispatch(getDynamicCategoryLogger({ ...d, prop: "leaderboard" })),
+    });
+  }, [dispatch]);
+
+  return (
+    <>
+      {leaderboard?.map((it: any, i: number) => (
+        <div
+          key={i}
+          className="flex h-[35px] items-center justify-between rounded-md bg-[linear-gradient(90deg,_#00336F_0%,_#000024_100%)] pl-4 pr-4 md:pl-20 lg:h-[74px]"
+        >
+          <div className="flex items-center gap-7 md:gap-[72px]">
+            <Image
+              src={"/images/ellipse.png"}
+              alt="user profile pic"
+              width={61}
+              height={61}
+              className="h-[27px] w-[27px] rounded-full lg:h-[61px] lg:w-[61px]"
+            />
+            <h2 className="text-center text-sm font-bold text-white lg:text-[26px]">
+              {it?.user?.[0]?.lastName} {it?.user?.[0]?.firstName}{" "}
+              {user?._id === it?.user?.[0]?._id && "(You)"}
+            </h2>
+          </div>
+          <div className="flex items-center gap-7 md:gap-14">
+            <div className="flex h-[20px] w-[78px] items-center justify-center rounded-md bg-white text-sm font-bold text-[#1C1C1CB8]/60 lg:h-[41px] lg:w-[231px] lg:text-[26px]">
+              {numberWithCommas(it.totalPoints)}
+            </div>
+            <div className="flex h-5 items-center rounded-md bg-white px-2 text-sm font-bold text-[#1C1C1CB8]/60 lg:h-[41px] lg:text-[26px]">
+              {/* {it.rank} */}
+              {i + 1}
+              {getOrdinalSuffix(i + 1)}
+            </div>
+          </div>
+        </div>
+      ))}
+    </>
   );
 };
