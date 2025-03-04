@@ -75,8 +75,8 @@ const LearningSection = () => {
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold text-white lg:text-base">
-                PLAY NOW
+              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+                Fun and learn
               </p>
             </div>
           </div>
@@ -124,8 +124,8 @@ const LearningSection = () => {
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold text-white lg:text-base">
-                PLAY NOW
+              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+                true or false
               </p>
             </div>
           </div>
@@ -173,8 +173,8 @@ const LearningSection = () => {
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold text-white lg:text-base">
-                PLAY NOW
+              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+                math mania
               </p>
             </div>
           </div>
@@ -213,8 +213,8 @@ const LearningSection = () => {
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold text-white lg:text-base">
-                PLAY NOW
+              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+                self challenge
               </p>
             </div>
           </div>

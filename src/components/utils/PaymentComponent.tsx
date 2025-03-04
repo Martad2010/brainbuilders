@@ -71,7 +71,14 @@ const PaystackModal = ({
       const res = await axios.post("/api/v1/subscription/paystack", {
         pay_ref: item?.reference,
         // channel: "paystack",
-        plan_id: locationState?.item?.type,
+        plan_id:
+          locationState?.item?.type === "yearly"
+            ? "BBY"
+            : locationState?.item?.type === "monthly"
+              ? "BBM"
+              : locationState?.item?.type === "weekly"
+                ? "BBW"
+                : "BBD",
         // msisdn,
       });
       console.log({ res }, "paystack");
