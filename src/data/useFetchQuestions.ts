@@ -99,9 +99,18 @@ const useFetch = () => {
       setIsSelected(null);
       setResult(res?.data?.data?.questions);
       setQuizId(res?.data?.data?._id || res?.data?._id);
-      setIsQuestion(isQuestion + 1);
+      // setIsQuestion(isQuestion + 1);
       setK((i) => !i);
       console.log({ result: res?.data });
+      setLocationState((prev: any) => {
+        return {
+          ...prev,
+          results: res?.data?.data,
+          examData,
+          answerArr,
+        };
+      });
+      navigate.push("/results");
     } catch (error) {
       let message = "Unknown Error";
       if (error instanceof Error) message = error.message;
@@ -184,7 +193,7 @@ const useFetch = () => {
     }
   };
 
-  // console.log({ state: location?.state, answerArr, isSelected });
+  console.log({ location, answerArr, isSelected, examData });
 
   useEffect(() => {
     if (!location || !auth?.isAuth) return navigate.back();
@@ -224,14 +233,17 @@ const useFetch = () => {
             ]);
             console.log({ dd: res?.data?.data });
             setExamLoad(false);
-            toast.success(res?.data?.message);
+            if (!examData || examData?.length === 0)
+              toast.success(res?.data?.message);
             setLoading(false);
             setIsQuestion(0);
             setK((i) => !i);
           } else {
             toast.info("No question(s) found for selection");
-            setLocationState(null);
             navigate.push("/");
+            // setTimeout(() => {
+            //   setLocationState(null);
+            // }, 2000);
           }
           // console.log({ result: res?.data });
         } catch (error) {

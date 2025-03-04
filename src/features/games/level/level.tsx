@@ -9,9 +9,9 @@ import { useLevelNavigator } from "../category";
 import { useRouter } from "next/navigation";
 
 export const Level = () => {
-  const [isOutOfCoin, setIsOutOfCoin] = useState(true),
-  {mainArr, setLocationState} = useLevelNavigator(),
-  router = useRouter()
+  const [isOutOfCoin, setIsOutOfCoin] = useState(false),
+    { mainArr, setLocationState } = useLevelNavigator(),
+    router = useRouter();
   return (
     <main
       className="min-h-screen w-full px-4 xl:px-12"
@@ -62,10 +62,12 @@ export const Level = () => {
                 </Link> */}
                 <button
                   onClick={() => {
-                    setLocationState((prev: any) => {
-                      return { ...prev, level: i + 1 };
-                    });
-                    router.push("/games/questions");
+                    if (item?.status === "unlocked") {
+                      setLocationState((prev: any) => {
+                        return { ...prev, level: i + 1 };
+                      });
+                      router.push("/games/questions");
+                    }
                   }}
                   className="cursor-pointer rounded-[5px] bg-[#0B2239] px-10 py-3 text-center text-base font-bold capitalize text-white md:text-[22px]"
                 >

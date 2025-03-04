@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { GlobalState } from "@/data/Context";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import FunAndLearnModal from "../modal/FunAndLearnModal";
 import { useAppSelector } from "@/data/store/hooks";
 import { authUserSelector } from "@/data/store/selectors/userSelector";
@@ -12,6 +13,11 @@ const LearningSection = () => {
     { setLocationState } = useContext(GlobalState),
     [isFunAndLearn, setIsFunAndLearn] = useState(false),
     { isAuth } = useAppSelector(authUserSelector);
+
+  useEffect(() => {
+    setLocationState(null);
+  }, []);
+
   return (
     <section
       id="main"

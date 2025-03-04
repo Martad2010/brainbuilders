@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { profileActions } from "@/data/constants";
-import { useAppSelector } from "@/data/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/data/store/hooks";
+import { logout } from "@/data/store/reducers/userSlice";
 import { authUserSelector } from "@/data/store/selectors/userSelector";
 import moment from "moment";
 import Image from "next/image";
@@ -10,7 +11,8 @@ import { useEffect } from "react";
 
 export const Profile = () => {
   const { isAuth, user } = useAppSelector(authUserSelector),
-    router = useRouter();
+    router = useRouter(),
+    dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!isAuth) router.push("/login");
@@ -120,7 +122,14 @@ export const Profile = () => {
                   {action.action}
                 </button>
               ))}
-              <button className="col-span-2 h-[48px] w-full rounded-xl bg-[#E34033] text-base font-bold text-white md:h-[64px] md:rounded-[9px] md:text-xl">
+              <button
+                onClick={() => {
+                  localStorage.clear();
+                  dispatch(logout());
+                  router.replace("/");
+                }}
+                className="col-span-2 h-[48px] w-full rounded-xl bg-[#E34033] text-base font-bold text-white md:h-[64px] md:rounded-[9px] md:text-xl"
+              >
                 Log out
               </button>
             </div>

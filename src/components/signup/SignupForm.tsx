@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useAppDispatch } from "@/data/store/hooks";
+import { useAppDispatch, useAppSelector } from "@/data/store/hooks";
 import { returnErrors } from "@/data/store/reducers/errorReducer";
 import { loadUser, login } from "@/data/store/reducers/userSlice";
 import axios, { AxiosError, isAxiosError } from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Button from "../utils/Button";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+import { authUserSelector } from "@/data/store/selectors/userSelector";
 
 const SignUpForm = () => {
   const [isTermsChecked, setIsTermsChecked] = useState(true);
@@ -30,6 +31,11 @@ const SignUpForm = () => {
     },
     [loading, setLoading] = useState(false),
     dispatch = useAppDispatch();
+
+  const { isAuth } = useAppSelector(authUserSelector);
+  useEffect(() => {
+    navigate.push("/");
+  }, [isAuth, navigate]);
 
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
