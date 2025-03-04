@@ -191,9 +191,10 @@ export const OptionsList = ({
             }}
           >
             <div
-              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[5px] bg-[${getOptionColor(i)}] text-xl font-bold text-white md:text-2xl`}
+              className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-[5px] text-xl font-bold text-white md:text-2xl`}
               style={{
                 boxShadow: "1px 2px 4px 0px rgba(0, 0, 0, 0.25)",
+                backgroundColor: getOptionColor(i),
               }}
             >
               {String.fromCharCode(65 + i)}

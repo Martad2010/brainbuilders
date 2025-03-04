@@ -86,7 +86,7 @@ const LearningSection = () => {
           onClick={() => {
             if (isAuth) {
               setLocationState({ type: "trueOrFalse" });
-              router.push("/games/category");
+              router.push("/games/questions");
             } else router.push("/login");
           }}
         >
@@ -184,7 +184,7 @@ const LearningSection = () => {
           onClick={() => {
             if (isAuth) {
               setLocationState({ type: "selfChallenge" });
-              router.push("/games/category");
+              router.push("/games/questions");
             } else router.push("/login");
           }}
         >
