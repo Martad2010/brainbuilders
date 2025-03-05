@@ -54,6 +54,7 @@ const Header = () => {
                         </ScrollLink>
                       ) : navLink.type === "link" ? (
                         <Link
+                          prefetch
                           href={navLink.href}
                           className={`${pathname === navLink.href ? "text-[#F17700]" : "text-[#118E96]"} font-bold`}
                         >
@@ -84,6 +85,7 @@ const Header = () => {
                                 key={option.id}
                                 href={option.href}
                                 legacyBehavior
+                                prefetch
                               >
                                 <a
                                   onClick={() => setShowMoreDropdown(false)}
@@ -100,9 +102,11 @@ const Header = () => {
                   );
               })}
             </ul>
+
             {isAuth ? (
               <button
                 onClick={() => router.push("/profile")}
+                onMouseEnter={() => router.prefetch("/profile")}
                 className="hidden h-11 w-[175px] items-center justify-center rounded-md bg-[#118E96] font-black text-white xl:flex"
               >
                 My Account
@@ -111,12 +115,14 @@ const Header = () => {
               <div className="hidden items-center gap-7 xl:flex">
                 <button
                   onClick={() => router.push("/login")}
+                  onMouseEnter={() => router.prefetch("/login")}
                   className={`rounded-[20px] border ${pathname === "/login" ? "border-[#F17700] text-[#F17700]" : "border-[#BBC42F] text-black"} px-[20px] py-[10px] font-black`}
                 >
                   Login
                 </button>
                 <button
                   onClick={() => router.push("/signup")}
+                  onMouseEnter={() => router.prefetch("/signup")}
                   className={`rounded-[20px] border ${pathname === "/signup" ? "border-[#F17700] text-[#F17700]" : "border-[#BBC42F] text-black"} px-[20px] py-[10px] font-black`}
                 >
                   Sign-up for Free
@@ -135,7 +141,6 @@ const Header = () => {
                 height={14}
               />
             </div>
-
             {/* Mobile Backdrop */}
             {showMobileMenu && (
               <div
@@ -143,7 +148,6 @@ const Header = () => {
                 onClick={() => setShowMobileMenu(false)}
               />
             )}
-
             {/* Mobile Menu */}
             <div
               className={`fixed right-0 top-0 z-50 h-full w-full max-w-[506px] transform overflow-y-auto bg-[#fafafa] transition-transform duration-300 ${showMobileMenu ? "translate-x-0" : "translate-x-full"} p-4`}
@@ -160,6 +164,7 @@ const Header = () => {
               {isAuth && (
                 <div
                   onClick={() => router.push("/profile")}
+                  onMouseEnter={() => router.prefetch("/profile")}
                   className="/* Layout & Spacing */ /* Background & Shape */ /* Padding */ mt-8 flex items-center gap-6 rounded-lg bg-white p-4"
                 >
                   <div className="shrink-0">
@@ -208,6 +213,7 @@ const Header = () => {
                           </ScrollLink>
                         ) : (
                           <Link
+                            prefetch
                             href={navLink.href}
                             className={`satoshi font-medium ${
                               pathname === navLink.href
@@ -228,6 +234,7 @@ const Header = () => {
                 <>
                   <button
                     onClick={() => router.push("/login")}
+                    onMouseEnter={() => router.prefetch("/login")}
                     className={`mt-[30px] w-full rounded-[20px] border py-[10px] font-black ${
                       pathname === "/login"
                         ? "border-[#F17700] text-[#F17700]"
@@ -239,6 +246,7 @@ const Header = () => {
 
                   <button
                     onClick={() => router.push("/signup")}
+                    onMouseEnter={() => router.prefetch("/signup")}
                     className={`mt-[30px] w-full rounded-[20px] border py-[10px] font-black ${
                       pathname === "/signup"
                         ? "border-[#F17700] text-[#F17700]"

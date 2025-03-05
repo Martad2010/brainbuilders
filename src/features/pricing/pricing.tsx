@@ -17,6 +17,11 @@ export const Pricing = () => {
   useEffect(() => {
     if (!isAuth) router.push("/login");
   }, [isAuth, router]);
+  
+  useEffect(() => {
+    router.prefetch("/login");
+    router.prefetch("/payment-mode");
+  }, [router]);
 
   return (
     <main

@@ -85,6 +85,7 @@ const useFetch = () => {
       else {
         dd.type = type;
       }
+      navigate.prefetch("/results");
       const res = await axios.post(
         `/api/v1/${
           ["exam", "contest"]?.includes(type)

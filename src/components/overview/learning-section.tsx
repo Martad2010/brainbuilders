@@ -16,6 +16,9 @@ const LearningSection = () => {
 
   useEffect(() => {
     setLocationState(null);
+    router.prefetch("/games/category");
+    router.prefetch("/games/questions");
+    router.prefetch("/login");
   }, []);
 
   return (

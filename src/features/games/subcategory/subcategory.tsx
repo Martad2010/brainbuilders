@@ -4,12 +4,17 @@ import { subcategory } from "@/data/constants";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCategorySubCategoryNavigator } from "../category";
+import { useEffect } from "react";
 
 export const SubCategory = () => {
   const router = useRouter(),
     { list, setLocationState } = useCategorySubCategoryNavigator({
       type: "subCategory",
     });
+
+  useEffect(() => {
+    router.prefetch("/games/level");
+  }, [router]);
 
   return (
     <main

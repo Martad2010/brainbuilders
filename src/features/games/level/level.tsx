@@ -4,7 +4,7 @@ import OutOfCoinModal from "@/components/modal/OutOfCoinModal";
 // import { progress } from "@/data/constants";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLevelNavigator } from "../category";
 import { useRouter } from "next/navigation";
 
@@ -12,6 +12,11 @@ export const Level = () => {
   const [isOutOfCoin, setIsOutOfCoin] = useState(false),
     { mainArr, setLocationState } = useLevelNavigator(),
     router = useRouter();
+
+  useEffect(() => {
+    router.prefetch("/games/questions");
+  }, [router]);
+
   return (
     <main
       className="min-h-screen w-full px-4 xl:px-12"

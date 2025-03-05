@@ -14,6 +14,7 @@ const Footer = () => {
                   {subLink.href ? (
                     <Link
                       href={subLink.href}
+                      prefetch
                       className="satoshi font-medium text-white"
                     >
                       {subLink.name}
