@@ -13,10 +13,12 @@ const EmpowerSection = () => {
               </span>
             </h2>
             <p className="ml-auto mt-7 max-w-[306px] text-sm font-bold text-white md:ml-0 md:mt-0 md:max-w-[506px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip.
+              Start building a successful future with Brain Builders by
+              empowering yourself with knowledge and skills today. Our suite of
+              features, including Play and Learn, Brain Tutor, Take Exams, and
+              Challenge Yourself, offers a holistic approach to learning. By
+              utilising these tools, you&apos;ll create a strong base for future
+              achievements and unlock your full potential.
             </p>
           </div>
           <div className="mt-20">
@@ -27,10 +29,12 @@ const EmpowerSection = () => {
               takes you as far <br /> as you are willing to go....
             </h2>
             <p className="ml-auto mt-7 max-w-[306px] text-sm font-bold text-white md:ml-0 md:mt-0 md:max-w-[506px]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip.
+              Brain Builders empowers you to take your education as far as you
+              wish. Our comprehensive offerings are to provide relevant,
+              curriculum-aligned content for Nigerian students and a wide range
+              of resources for international learners, preparing them for
+              success in any academic environment. Brain Builders equips you
+              with the knowledge and skills to excel and make a lasting impact.
             </p>
           </div>
           <div className="mt-20 flex items-center justify-center gap-[14px] md:mt-14 md:gap-7">

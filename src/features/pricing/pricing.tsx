@@ -91,7 +91,7 @@ export const Pricing = () => {
                 </div>
                 <button
                   onClick={() => {
-                    if (plan?.type !== "yearly") {
+                    // if (plan?.type !== "yearly") {
                       setLocationState({
                         amount: plan?.amount,
                         currency: "naira",
@@ -99,7 +99,7 @@ export const Pricing = () => {
                         item: plan,
                       });
                       router.push("/payment-mode");
-                    }
+                    // }
                   }}
                   className="font-switch mt-6 h-[41px] w-full rounded-md border border-[rgba(0,0,0,0.20)] bg-[#31BF51] text-[10px] font-medium text-white md:mt-12 md:rounded-[33px] md:bg-[#30749F] md:text-sm md:font-black"
                   style={{

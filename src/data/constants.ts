@@ -484,7 +484,7 @@ export const plans = [
     name: "Gold Plan",
     offers: [
       "One day free trial",
-      "#200/ Day",
+      "#200/ Week",
       "7 Days Access",
       "Full access to all feautures",
       "175 Bonus Coins",
@@ -499,7 +499,7 @@ export const plans = [
     name: "Platinum Plan",
     offers: [
       "One day free trial",
-      "#500/ Day",
+      "#500/ Month",
       "30 Days Access",
       "Full access to all feautures",
       "480 Bonus Coins",
@@ -514,7 +514,7 @@ export const plans = [
     name: "Diamond Plan",
     offers: [
       "One day free trial",
-      "#4500/ Day",
+      "#4500/ Year",
       "365 Days Access",
       "Full access to all feautures",
       "5000 Bonus Coins",
