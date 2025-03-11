@@ -161,7 +161,7 @@ export const Results = () => {
               </p>
             </div>
             {/* review */}
-            <div className="flex flex-col items-center">
+            <div className="hidden flex-col items-center">
               <div className="flex h-[37px] w-[48px] items-center justify-center rounded-lg bg-[#3E91E6] md:h-[64px] md:w-[65px]">
                 <Image
                   src={"/images/review.svg"}
@@ -175,7 +175,7 @@ export const Results = () => {
               </p>
             </div>
             {/* outline */}
-            <div className="flex flex-col items-center">
+            <div className="hidden flex-col items-center">
               <div className="flex h-[37px] w-[48px] items-center justify-center rounded-lg bg-[#31BF51] md:h-[64px] md:w-[65px]">
                 <Image
                   src={"/images/outline.svg"}

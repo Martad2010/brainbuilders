@@ -51,3 +51,33 @@ export const Loader = ({ className }: { className?: string }) => {
     </div>
   );
 };
+
+
+export const AvatarImg = ({
+  user,
+  style,
+  className,
+}: {
+  className?: string;
+  user: any;
+  style?: any;
+}) => {
+  return (
+    <div
+      className={`relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-[#0B2239] bg-gray-100 dark:bg-gray-600 ${
+        className || ""
+      }`}
+      style={style || null}
+    >
+      <span
+        className={`font-bold text-[#0B2239] dark:text-gray-300 ${
+          style ? "text-7xl" : ""
+        } uppercase`}
+      >
+        {user?.firstName?.slice(0, 1) || ""}
+        {""}
+        {user?.lastName?.slice(0, 1) || ""}
+      </span>
+    </div>
+  );
+};

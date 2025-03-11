@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { AvatarImg } from "@/components/utils/Button";
 import { profileActions } from "@/data/constants";
 import { useAppDispatch, useAppSelector } from "@/data/store/hooks";
 import { logout } from "@/data/store/reducers/userSlice";
@@ -18,6 +19,13 @@ export const Profile = () => {
     if (!isAuth) router.push("/login");
   }, [isAuth, router]);
 
+  useEffect(() => {
+    const thisData = profileActions?.filter((it) => it?.href);
+    thisData?.forEach((it) => {
+      router?.prefetch(it?.href as string);
+    });
+  }, [router]);
+
   return (
     <main
       className="flex min-h-screen px-0 lg:px-12"
@@ -32,12 +40,16 @@ export const Profile = () => {
         <div className="flex w-full flex-col items-center justify-start gap-16 md:flex-row lg:w-[80%]">
           <div className="shrink-0">
             <div className="flex items-center justify-center md:items-start md:justify-start">
-              <Image
+              {/* <Image
                 src={user?.image?.url || "/images/profile-dp.png"}
                 alt="profile image"
                 width={207}
                 height={210}
                 className="rounded-[32px]"
+              /> */}
+              <AvatarImg
+                user={user}
+                style={{ height: "10rem", width: "10rem" }}
               />
             </div>
             {/* personal information */}
@@ -64,10 +76,12 @@ export const Profile = () => {
                 Privacy Settings
               </p>
               <p className="font-bold text-[#4A4E4F]">Change your password</p>
-              <p className="font-bold text-[#4A4E4F]">Verify your Email</p>
+              <p className="hidden font-bold text-[#4A4E4F]">
+                Verify your Email
+              </p>
             </div>
             {/* payment settings */}
-            <div className="mt-7">
+            <div className="mt-7 hidden">
               <p className="text-xl font-bold text-[#0B2239]">
                 Payment Settings
               </p>
@@ -108,20 +122,22 @@ export const Profile = () => {
               </button>
             </div>
             <div className="mt-3 grid grid-cols-2 gap-x-6 gap-y-4 md:gap-x-9">
-              {profileActions.map((action) => (
-                <button
-                  key={action.id}
-                  // onClick={() => {
-                  //   if (action?.href) router.push(action?.href);
-                  // }}
-                  className="w-full rounded-[9px] bg-white py-2 text-base font-bold text-[#4A4E4F] md:text-xl"
-                  style={{
-                    boxShadow: "0px 2px 2.8px 0px rgba(0, 0, 0, 0.15)",
-                  }}
-                >
-                  {action.action}
-                </button>
-              ))}
+              {profileActions
+                ?.filter((it) => it?.href)
+                ?.map((action) => (
+                  <button
+                    key={action.id}
+                    onClick={() => {
+                      if (action?.href) router.push(action?.href);
+                    }}
+                    className="w-full rounded-[9px] bg-white py-2 text-base font-bold text-[#4A4E4F] md:text-xl"
+                    style={{
+                      boxShadow: "0px 2px 2.8px 0px rgba(0, 0, 0, 0.15)",
+                    }}
+                  >
+                    {action.action}
+                  </button>
+                ))}
               <button
                 onClick={() => {
                   localStorage.clear();

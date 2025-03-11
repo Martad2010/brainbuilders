@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { AvatarImg } from "@/components/utils/Button";
 // import { scores } from "@/data/constants";
 import { useAppDispatch, useAppSelector } from "@/data/store/hooks";
 import { getDynamicCategoryLogger } from "@/data/store/reducers/LoggerSlice";
@@ -8,7 +9,7 @@ import {
   categorySelector,
 } from "@/data/store/selectors/userSelector";
 import { apiCall, numberWithCommas } from "@/data/useFetcher";
-import Image from "next/image";
+// import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -62,11 +63,15 @@ export const LeaderTable = () => {
           className="flex h-[35px] items-center justify-between rounded-md bg-[linear-gradient(90deg,_#00336F_0%,_#000024_100%)] pl-4 pr-4 md:pl-20 lg:h-[74px]"
         >
           <div className="flex items-center gap-7 md:gap-[72px]">
-            <Image
+            {/* <Image
               src={"/images/ellipse.png"}
               alt="user profile pic"
               width={61}
               height={61}
+              className="h-[27px] w-[27px] rounded-full lg:h-[61px] lg:w-[61px]"
+            /> */}
+            <AvatarImg
+              user={it?.user?.[0]}
               className="h-[27px] w-[27px] rounded-full lg:h-[61px] lg:w-[61px]"
             />
             <h2 className="text-center text-sm font-bold text-white lg:text-[26px]">

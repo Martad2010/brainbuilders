@@ -9,6 +9,8 @@ import axios, { isAxiosError } from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Countdown from "react-countdown";
+import moment from "moment";
 
 export const Questions = () => {
   const {
@@ -22,6 +24,9 @@ export const Questions = () => {
       handlePrev,
       loading,
       setOptions,
+      duration,
+      k,
+      handleTimeUp,
     } = useFetch(),
     { user } = useAppSelector(authUserSelector);
 
@@ -43,6 +48,11 @@ export const Questions = () => {
             <></>
           ) : (
             <div className="mb-4 flex justify-end gap-4">
+              <MainTimer
+                duration={duration || 10}
+                handleNext={handleTimeUp}
+                k={`${k}`}
+              />
               <div className="flex items-center gap-4 rounded-[25px] bg-white px-4 py-[10px]">
                 <Image
                   src={"/images/coin.svg"}
@@ -64,7 +74,7 @@ export const Questions = () => {
                 />
                 <p className="text-sm font-bold text-white">12</p>
                 <div className="h-[23px] w-[1px] bg-white"></div>
-                <div className="flex h-6 w-6 items-center justify-center rounded-full border-[2px] border-[#E34033] text-2xl font-bold text-[#E34033]">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full border-[2px] border-[#E34033] text-2xl font-bold text-[#81342e]">
                   x
                 </div>
                 <p className="text-sm font-bold text-white">0</p>
@@ -339,6 +349,68 @@ export const LifeLineOption = ({
           Restart time
         </button>
       </div>
+    </>
+  );
+};
+
+const Completionist = () => <small>Time up!</small>;
+const Renderer = ({
+  hours,
+  minutes,
+  seconds,
+  completed,
+  handleNext,
+}: {
+  handleNext: () => any;
+  completed: boolean;
+  seconds: string | number;
+  minutes: string | number;
+  hours: string | number;
+}) => {
+  useEffect(() => {
+    if (completed) {
+      handleNext();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [completed]);
+
+  if (completed) {
+    // Render a completed state
+    return <Completionist />;
+  } else {
+    // Render a countdown
+    return (
+      <small>
+        {hours}h: {minutes}m: {seconds}s
+      </small>
+    );
+  }
+};
+
+export const MainTimer = ({
+  duration,
+  handleNext,
+  k,
+}: {
+  duration: number;
+  handleNext: () => any;
+  k: string;
+}) => {
+  console.log({ duration, k });
+
+  return (
+    <>
+      {duration && (
+        <div className="flex items-center gap-[10px] rounded-[25px] border border-white px-[9px] py-[13px]">
+          <div className="flex h-full items-center justify-center text-xl font-bold capitalize text-white lg:w-full">
+            <Countdown
+              key={k}
+              date={moment().add(duration, "seconds").toDate()}
+              renderer={(da) => <Renderer {...da} handleNext={handleNext} />}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };

@@ -6,7 +6,7 @@ import { loadUser, login } from "@/data/store/reducers/userSlice";
 import axios, { AxiosError, isAxiosError } from "axios";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Button from "../utils/Button";
@@ -30,9 +30,11 @@ const SignUpForm = () => {
       });
     },
     [loading, setLoading] = useState(false),
-    dispatch = useAppDispatch();
+    dispatch = useAppDispatch(),
+    params = useSearchParams();
 
   const { isAuth } = useAppSelector(authUserSelector);
+
   useEffect(() => {
     if (isAuth) navigate.push("/");
   }, [isAuth, navigate]);
@@ -59,6 +61,8 @@ const SignUpForm = () => {
     try {
       const newState = { ...state };
       delete newState?.confirmPassword;
+      const referralCode = params?.get("referralCode");
+      if (referralCode) newState.referralCode = referralCode;
 
       const res = await axios.post(`/api/v1/auth/register`, { ...newState });
       console.log({ resp: res?.data });

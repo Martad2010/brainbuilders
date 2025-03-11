@@ -405,32 +405,33 @@ export const profileActions = [
   {
     id: 1,
     action: "Edit Profile",
-    href: "/profile/edit",
+    // href: "/profile/edit",
   },
   {
     id: 2,
     action: "Coin History",
-    href: "/coin-history",
+    // href: "/coin-history",
   },
   {
     id: 3,
     action: "Coin History",
-    href: "/coin-history",
+    // href: "/coin-history",
   },
   {
     id: 4,
     action: "Invite Friends",
-    href: "/refer",
+    // href: "/refer",
+    href: "/referrals",
   },
   {
     id: 5,
     action: "Badges",
-    href: "/badges",
+    // href: "/badges",
   },
   {
     id: 6,
     action: "Notifications",
-    href: "/notifications",
+    // href: "/notifications",
   },
   {
     id: 7,
@@ -440,7 +441,7 @@ export const profileActions = [
   {
     id: 8,
     action: "Settings",
-    href: "/settings",
+    // href: "/settings",
   },
 ];
 

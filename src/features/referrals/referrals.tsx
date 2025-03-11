@@ -45,7 +45,9 @@ export const Referrals = () => {
               </div>
               <button
                 onClick={() =>
-                  copyToClipboard((user as any)?.referralCode || code)
+                  copyToClipboard(
+                    `${window.location.origin}/signup?referralCode=${(user as any)?.referralCode || code}`,
+                  )
                 }
                 className="ml-5 h-[31px] w-[113px] rounded-[3px] bg-[#F17700] font-bold text-white"
               >
