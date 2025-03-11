@@ -116,7 +116,7 @@ export const Questions = () => {
                 <div className="absolute bottom-0 right-1/2 flex translate-x-1/2 transform items-center gap-7 md:right-8 md:translate-x-0 md:transform-none">
                   <button
                     onClick={handlePrev}
-                    className={`h-[26px] w-[116px] rounded-2xl bg-[#F17700] text-[17px] font-bold text-white md:h-[36px] ${duration ? "" : "hidden"} `}
+                    className={`h-[26px] w-[116px] rounded-2xl bg-[#F17700] text-[17px] font-bold text-white md:h-[36px] ${duration ? "hidden" : ""} `}
                   >
                     Prev
                   </button>
