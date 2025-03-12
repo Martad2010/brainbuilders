@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import Confetti from "react-confetti";
+import { toast } from "react-toastify";
 import useWindowSize from "react-use/lib/useWindowSize";
 
 export const Results = () => {
@@ -26,6 +27,19 @@ export const Results = () => {
       setPercent(t);
     }
   }, [info]);
+
+  const handleShareScore = () => {
+    const scoreMessage = `I scored ${Number(percent).toFixed(2)}% on the quiz! 🎉`;
+    navigator.clipboard
+      .writeText(scoreMessage)
+      .then(() => {
+        toast.info("Score copied to clipboard! Share it with your friends!");
+      })
+      .catch((err) => {
+        console.error("Could not copy text: ", err);
+        toast.error("Could not copy text");
+      });
+  };
 
   useEffect(() => {
     if (!locationState) router.back();
@@ -175,7 +189,10 @@ export const Results = () => {
               </p>
             </div>
             {/* outline */}
-            <div className="hidden flex-col items-center">
+            <div
+              className="flex flex-col items-center"
+              onClick={handleShareScore}
+            >
               <div className="flex h-[37px] w-[48px] items-center justify-center rounded-lg bg-[#31BF51] md:h-[64px] md:w-[65px]">
                 <Image
                   src={"/images/outline.svg"}

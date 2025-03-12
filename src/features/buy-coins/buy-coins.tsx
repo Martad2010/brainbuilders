@@ -1,14 +1,22 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { coins } from "@/data/constants";
 import { useAppSelector } from "@/data/store/hooks";
 import { authUserSelector } from "@/data/store/selectors/userSelector";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const PaymentComponent = dynamic(
+  () => import("../../components/utils/PaymentComponent"),
+  { ssr: false },
+);
 
 export const BuyCoins = () => {
   const { isAuth } = useAppSelector(authUserSelector),
-    router = useRouter();
+    router = useRouter(),
+    [coinType, setCoinType] = useState<any>(null);
 
   useEffect(() => {
     if (!isAuth) router.push("/login");
@@ -46,9 +54,11 @@ export const BuyCoins = () => {
             {coins.map((item) => (
               <div
                 key={item.id}
-                onClick={() =>
-                  item?.link ? window.open(item?.link, "_blank") : {}
-                }
+                onClick={() => {
+                  if (item?.link) window.open(item?.link, "_blank");
+
+                  if (item?.type) setCoinType(item);
+                }}
                 className="flex h-[141px] w-[139px] cursor-pointer flex-col items-center justify-center rounded-[11px] border-[3px] border-[#0B2239] md:w-[211px]"
                 style={{
                   backgroundImage: "url('/images/coins-bg.svg')",
@@ -74,6 +84,20 @@ export const BuyCoins = () => {
           </div>
         </div>
       </div>
+      <PaymentComponent
+        isOpen={!!coinType}
+        setIsOpen={setCoinType}
+        locationState={{
+          amount: coinType?.amount,
+          item: {
+            type: coinType?.type,
+          },
+        }}
+        handleClose={() => {
+          setCoinType(null);
+          router?.push("/");
+        }}
+      />
     </main>
   );
 };

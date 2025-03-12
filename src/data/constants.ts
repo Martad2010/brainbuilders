@@ -393,11 +393,15 @@ export const coins = [
     id: 5,
     coins: "x 60,000",
     price: "5,000NGN",
+    amount: 5000,
+    type: "CoinPurchase5000",
   },
   {
     id: 6,
     coins: "x 20,000",
     price: "10,000NGN",
+    amount: 10000,
+    type: "CoinPurchase10000",
   },
 ];
 

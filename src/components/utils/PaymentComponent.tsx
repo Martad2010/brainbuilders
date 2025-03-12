@@ -57,7 +57,7 @@ const PaystackModal = ({
     initializePayment = usePaystackPayment(config),
     dispatch = useAppDispatch();
 
-  // console.log({ config });
+  // console.log({ config, user, locationState });
   useEffect(() => {
     if (locationState?.amount && isOpen) {
       setReference(moment().format("YYYYMMDDHHmmssASSS"));
@@ -68,19 +68,33 @@ const PaystackModal = ({
     setLoading(true);
     console.log({ item }, "async");
     try {
-      const res = await axios.post("/api/v1/subscription/paystack", {
-        pay_ref: item?.reference,
-        // channel: "paystack",
-        plan_id:
-          locationState?.item?.type === "yearly"
-            ? "BBY"
-            : locationState?.item?.type === "monthly"
-              ? "BBM"
-              : locationState?.item?.type === "weekly"
-                ? "BBW"
-                : "BBD",
-        // msisdn,
-      });
+      let plan_id =
+        locationState?.item?.type === "yearly"
+          ? "BBY"
+          : locationState?.item?.type === "monthly"
+            ? "BBM"
+            : locationState?.item?.type === "weekly"
+              ? "BBW"
+              : "BBD";
+
+      if (locationState?.item?.type === "CoinPurchase5000")
+        plan_id = "CoinPurchase5000";
+      if (locationState?.item?.type === "CoinPurchase10000")
+        plan_id = "CoinPurchase10000";
+
+      const res = await axios.post(
+        ["CoinPurchase5000", "CoinPurchase10000"]?.includes(
+          locationState?.item?.type,
+        )
+          ? "/api/v1/subscription"
+          : "/api/v1/subscription/paystack",
+        {
+          pay_ref: item?.reference,
+          // channel: "paystack",
+          plan_id,
+          // msisdn,
+        },
+      );
       console.log({ res }, "paystack");
       toast.success(res?.data?.message);
       handleClose();

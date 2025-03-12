@@ -75,7 +75,7 @@ const UserSlice = createSlice({
         // state.user = payload.data;
         // state.profile = payload.profile;
       }
-      state.isAuth = true;
+      // state.isAuth = true;
     });
     builder.addCase(loadUser.rejected, (state) => {
       state.loading = false;
