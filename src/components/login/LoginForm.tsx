@@ -34,6 +34,11 @@ const LoginForm = () => {
     if (isAuth) navigate.push("/");
   }, [isAuth, navigate]);
 
+  useEffect(() => {
+    navigate.prefetch("/reset-password");
+    navigate.prefetch("/signup");
+  }, [navigate]);
+
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {

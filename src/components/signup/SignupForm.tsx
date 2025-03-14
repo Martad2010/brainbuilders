@@ -39,6 +39,10 @@ const SignUpForm = () => {
     if (isAuth) navigate.push("/");
   }, [isAuth, navigate]);
 
+   useEffect(() => {
+     navigate.prefetch("/login");
+   }, [navigate]);
+
   const handleSubmit = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
