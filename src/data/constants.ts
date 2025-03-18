@@ -45,11 +45,11 @@ export const navLinks = [
         name: "Buy coin",
         href: "/buy-coins",
       },
-      {
-        id: 2,
-        name: "Results",
-        href: "/results",
-      },
+      // {
+      //   id: 2,
+      //   name: "Results",
+      //   href: "/results",
+      // },
       {
         id: 3,
         name: "Instruction",

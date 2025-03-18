@@ -1,12 +1,77 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { PurifiedText } from "../about";
+import axios, { AxiosError, isAxiosError } from "axios";
+import { toast } from "react-toastify";
+import { useAppDispatch } from "@/data/store/hooks";
+import { returnErrors } from "@/data/store/reducers/errorReducer";
+import Button from "@/components/utils/Button";
+import { useRouter } from "next/navigation";
 
 export const Contact = () => {
   const [isTermsChecked, setIsTermsChecked] = useState(false),
-    [type, setType] = useState("");
+    [type, setType] = useState(""),
+    navigate = useRouter();
+
+  const init = {},
+    [state, setState] = useState<any>(init),
+    textChange = (e: React.ChangeEvent<HTMLInputElement> | any) => {
+      const { name, value } = e?.target;
+      setState((prev: any) => {
+        return { ...prev, [name]: value };
+      });
+    },
+    [loading, setLoading] = useState(false),
+    dispatch = useAppDispatch();
+
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e?.preventDefault();
+    if (!isTermsChecked)
+      return toast.info("Please agree to the terms & conditions");
+    if (!state?.name || !state?.message || !state?.email)
+      return toast.info("Please fill out all fields");
+
+    setLoading(true);
+    try {
+      const newState = state;
+      const res = await axios.post(`/api/v1/contact`, { ...newState });
+      console.log({ resp: res?.data });
+      toast.success(res?.data?.message);
+      setState(null);
+      navigate.push("/");
+    } catch (error) {
+      let message = "Unknown Error";
+      if (error instanceof Error) message = error.message;
+      if (isAxiosError(error)) {
+        if (error) console.log({ error: error?.response?.data, err: error });
+        if (error?.response?.status === 429) toast.error(error?.response?.data);
+        const err = error as AxiosError;
+        if (err?.response?.data) {
+          const { error: errors }: resErr = err?.response?.data;
+          if (errors && errors?.length > 1) {
+            dispatch(
+              returnErrors({ error: errors, status: err?.response?.status }),
+            );
+          } else {
+            const errMsg =
+              error?.response?.data?.message ||
+              error?.response?.data?.error?.[0]?.message ||
+              error?.response?.data?.error?.[0]?.msg ||
+              error?.message;
+
+            toast.error(errMsg);
+          }
+        } else toast.error(message);
+      } else toast.error(message);
+    }
+    setLoading(false);
+  };
+
   return (
     <main className="">
       <div className="contacts-bg flex min-h-[932px] px-0 pb-6 md:min-h-screen md:pb-14 lg:px-12 lg:pb-0">
@@ -164,21 +229,33 @@ export const Contact = () => {
               type="text"
               className="h-12 w-full rounded-lg bg-zinc-50 px-4 pr-12 text-sm text-black shadow-sm outline-none"
               placeholder="Name"
+              name="name"
+              value={state?.name}
+              onChange={textChange}
             />
             <input
               type="email"
               className="h-12 w-full rounded-lg bg-zinc-50 px-4 pr-12 text-sm text-black shadow-sm outline-none"
               placeholder="Email Address"
+              name="email"
+              value={state?.email}
+              onChange={textChange}
             />
             <input
               type="tel"
               className="h-12 w-full rounded-lg bg-zinc-50 px-4 pr-12 text-sm text-black shadow-sm outline-none"
               placeholder="Phone Number"
+              name="phone"
+              value={state?.phone}
+              onChange={textChange}
             />
             <textarea
               rows={8}
               className="w-full resize-none rounded-lg bg-zinc-50 px-4 pr-12 text-sm text-black shadow-sm outline-none"
               placeholder="Enter your text here..."
+              name="message"
+              value={state?.message}
+              onChange={textChange}
             />
             <div className="flex items-center gap-2">
               <div
@@ -197,9 +274,18 @@ export const Contact = () => {
                 I accept terms & conditions
               </p>
             </div>
-            <button className="w-full rounded-full bg-[#118E96] py-4 font-medium text-white">
+            {/* <button className="w-full rounded-full bg-[#118E96] py-4 font-medium text-white">
               Submit
-            </button>
+            </button> */}
+            <Button
+              type="submit"
+              className="w-full rounded-full bg-[#118E96] py-4 font-medium text-white"
+              onClick={handleSubmit}
+              isLoading={loading}
+              disabled={!isTermsChecked}
+            >
+              Submit
+            </Button>
           </form>
         </div>
       </div>
