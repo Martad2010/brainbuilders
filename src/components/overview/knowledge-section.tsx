@@ -9,9 +9,15 @@ const KnowledgeSection = () => {
             Improve your Basic Knowledge
           </h3>
           <p className="mt-6 max-w-[537px] font-normal text-[#002724] md:mt-0 md:font-black">
-            Ipsum dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-            amet, consectetur adipiscing elit, Ipsum dolor sit amet, consectetur
-            adipiscing elit, ipsum dolor sit amet, consectetur adipiscing elit,
+            Embark on a comprehensive learning journey with Brain Builders. Play
+            and Learn makes education exciting with games that teach and
+            entertain. Brain Tutor personalises your study experience, offering
+            targeted lessons and activities to boost your knowledge. Test your
+            skills in Take Exams, designed to replicate real exam conditions,
+            and track your progress. For an extra challenge, Challenge Yourself
+            provides puzzles and quizzes that push you to think critically and
+            creatively. Explore these features and enhance your educational
+            journey with us!
           </p>
           <div className="mt-6 flex items-center justify-start gap-[14px] md:mt-10">
             <div className="cursor-pointer">

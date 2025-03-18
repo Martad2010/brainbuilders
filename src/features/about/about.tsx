@@ -45,7 +45,7 @@ export const About = () => {
         </div>
       </div>
       <div className="container flex w-full justify-center pb-8 pt-10 md:pt-20">
-        <div className="w-full px-0 lg:px-12 xl:w-[60%]">
+        <div className="w-full px-0 lg:px-12 xl:w-[80%]">
           <PurifiedText type={type} setType={setType} section={"about"} />
           {!type && (
             <>
@@ -56,37 +56,12 @@ export const About = () => {
                   marginTop: "10px",
                 }}
               >
-                Ipsum dolor sit amet, consectetur adipiscing elit, ipsum dolor
-                sit amet, consectetur adipiscing elit, Ipsum dolor sit amet,
-                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-                adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
-                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
-                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
-                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-                adipiscing elit, Ipsum dolor sit amet, consec
-              </p>
-              <p
-                className="font-switch text-sm font-normal text-[#4A4E4F] md:text-base md:font-black"
-                style={{
-                  marginTop: "10px",
-                }}
-              >
-                dipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
-                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
-                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
-                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-                adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
-                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
-                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
-                consectetur adipiscing elit, ipsum dolor sit amet, consectetur
-                adipiscing elit, Ipsum dolor sit amet, consectetur adipiscing
-                elit, ipsum dolor sit amet, consectetur adipiscing elit, Ipsum
-                dolor sit amet, consectetur adipiscing elit, ipsum dolor sit
-                amet, consectetur adipiscing elit, Ipsum dolor sit amet,
-                consectetur adipiscing elit, ipsum dolor sit
+                Shape your future with Brain Builders and use the opportunity to
+                empower yourself today for success tomorrow. Our platform offers
+                a comprehensive suite of features, including Play and Learn,
+                Brain Tutor, Take Exams, and Challenge Yourself. Together, they
+                enable you to master new skills and knowledge, laying the
+                groundwork for a prosperous and fulfilling future.
               </p>
             </>
           )}

@@ -533,32 +533,148 @@ export const plans = [
 export const faqs = [
   {
     id: 1,
-    question: "What is Cansed quiaione  sequi n?",
-    answer:
-      "What is odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, ",
+    question: "What is a LMS?",
+    answer: [
+      "A Learning Management System (LMS) is a learning portal—or an online learning platform—designed to automate the delivery of eLearning and mobile learning courses to its learners. A LMS allows you to add users, add courses, view reports on course completion, view test scores, give certificates, and avail analytics data. LMS can be used to deliver eLearning courses to students, employees, customers, and partners anytime, anywhere. Training companies create eLearning courses and distribute it to their students/clients, who are either learners interested in subscribing to their courses, or to corporate customers, who want to train their employees.",
+    ],
+    list: [],
   },
   {
     id: 2,
-    question: "Weius modi tempora incidunt ut labore et dolore? ",
-    answer:
-      "What is odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, ",
+    question: "What are the advantages of Brain Builders?",
+    answer: [
+      "Brain Builders has a lot of advantages over regular learning in classrooms.",
+      "Some of these are:",
+    ],
+    list: [
+      "Flexibility: In the regular type of learning, students usually have a fixed routine of sitting together and learning from the instructor. The duration of the class is fixed. The topics to be discussed in the class are also fixed. This is different from Brain Builders. Learning on Brain Builders is very flexible. Students can learn whatever they want, whenever they want, wherever they want. Students decide what they want to study and how much time they have to do so.",
+      "Prompt Access to Varied Resources: Students need access to different kinds of resources. These resources can be information, notes, theories, diagrams etc. These resources are available to the students at all times of the day.",
+      "Prompt Feedback Mechanism: In regular learning, tests are taken by pen and paper, and graded by the teachers before the results are availed. This takes time and can be tedious. On Brain Builders, tests are taken through the Computer Based Test (CBT) system. With this system, test are administered immediately on completion of the courses and results are obtained immediately.",
+      "Higher Retention: In regular learning. Learning is delivered by a conversation between the instructor and the students. The use of smart technology is less in the regular teaching method. A lot of concepts are abstract to the teacher and the learners! However, on Brain Builders, there is a substantial use of digital resources including presentations, multimedia involving images, audio and videos, animations etc. With the use of these resources, students get to learn more, visualise what they learn and engage more with the learning expectations. They engage and understand better the things they see rather than read. Therefore, Brain Builders increases the understanding and retention ability of the students.",
+      "Cost Effectiveness: Students engaged in regular learning have to go to school or institute regularly. This may involve transportation and associated costs. Facility maintenance costs of the school, rent, and other costs add up to increase the tuition charged. However, on Brain Builders these costs are eliminated. Learners have access to resources from anywhere they are without transport costs. Other factors which in more cost effective.",
+      "Greener Approach: The regular learning method uses pen and paper. Even tests are conducted on a pen-paper medium. These papers are made by cutting down trees. Pencils are also made of wood. Transportation to and from the school by the students and teachers increases pollution. However, learning on Brain Builders is purely digital. There is no need for paper and pens. Everything can be noted using electronic devices. Get-2-know complies with the greener approach.",
+      "Faster Learning: In regular learning, the speed of learning depends on the number of students available, the number of classrooms available and the limited period of a class. But on Brain Builders, learning speed depends on the speed and pace of the student.",
+      "Easy Updating: In regular learning methods notes have to be regularly updated by the students. This takes a lot of time. But notes are simply downloaded by the students. So they are automatically updated.",
+      "Brain Builders eliminates cultural and religious barriers to learning, reduces security threats to schools and learning facilities in volatile regions, eliminates students' proximity to learning facilities and centres, eliminates unwarranted extracurricular activities, while raising content viability and delivery, upgrading users' experience, increases the standards of education and generally stimulating students interest in learning!",
+    ],
   },
   {
     id: 3,
-    question: "Weius modi tempora incidunt ut labore et dolore? ",
-    answer:
-      "What is odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, ",
+    question: "How are courses presented to the learners?",
+    answer: [
+      "Once users log into their account, on the dashboard, they can click on Categories to access all the courses assigned to them. Course status reports are available on the dashboard.",
+    ],
+    list: [],
   },
   {
     id: 4,
-    question: "Weius modi tempora incidunt ut labore et dolore? ",
-    answer:
-      "What is odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, ",
+    question: "Can Users view which courses and tests they have taken?",
+    answer: [
+      "Yes, learners will see their category completion status and check course progress and their current results on tests.",
+    ],
+    list: [],
   },
   {
     id: 5,
-    question: "Weius modi tempora incidunt ut labore et dolore? ",
+    question: "What do learners need to access Brain Builders?",
+    answer: [
+      "To access the Brain Builders system, learners need an internet-enabled device with a live internet connection, and an Internet browser such as Microsoft’s Internet Explorer 8.0, Mozilla Firefox 3.0 or better you can also use Google Chrome or Apple Safari. (For the web users:  https://mybrain-builder.com/). We do not offer support for the various generic, manufacturer, or service provider browsers that are pre-installed on many mobile devices. A supported browser app can be downloaded from your phone’s application provider.",
+    ],
+    list: [],
+  },
+  {
+    id: 6,
+    question: "Do we need to install anything?",
+    answer: [
+      "Not really. Just make sure you have the latest version of your Web browser.",
+    ],
+    list: [],
+  },
+  {
+    id: 7,
+    question:
+      "How does the price of Brain Builders compare to the price of installed systems?",
+    answer: ["We are pleased you asked! On Brain Builders:"],
+    list: [
+      "You don’t have any software purchase and installation cost",
+      "You don’t have any IT staff costs.",
+      "Your maintenance contracts are zero.",
+      "Your cost for new features/upgrades is zero. As new features are released, they are automatically added to your account.",
+      "You don’t have to purchase and install complicated and expensive software to access training.",
+      "Brain Builders is available 24 hours a day and you don’t have to leave your computer or mobile devices. See how we can save you money. Contact sales today!",
+    ],
+  },
+  {
+    id: 8,
+    question: "What are the features of Brain Builders?",
+    answer: ["On Brain Builders students learn at their speed and pace!"],
+    list: [
+      "Students learn for their needs and interests.",
+      "Geographical barriers to learning are eliminated.",
+      "Courses are syllabus-tailored and carefully designed to sustain learners’ interest!",
+      "The mobile app allows learning on the go with mobile gadgets.",
+      "The resources are available at all times. Students can access them wherever, whenever!",
+      "A picture explains more than a thousand words! Brain Builders contains tons of explainer pictures which drive home academic and technical concepts in a very simple, entertaining manner!",
+      "The system is flexible. It inspires learning and creativity.",
+      "Students test their learning outcomes immediately on completion of the course(s) using Computer Based Testing (CBT) in the system.",
+      "Brain Builders enhances the computer and internet skills of the student.",
+    ],
+  },
+  {
+    id: 9,
+    question: "Who uses the Brain Builders LMS? ",
+    answer: [
+      "Just about any learner who wants to increase knowledge acquisition and retention, improve or complete their education, prepare properly for school or external examinations or just to complement traditional classroom instruction can use the Brain Builders Learning Management System. Brain Builders is a simple yet powerful online training system and platform that meets the needs of wide range of learners, school drop-outs, adult education, organizations, government agencies, training professionals, teachers and just about anyone who needs e-learning, training and development within the Brain Builders scope.",
+    ],
+    list: [],
+  },
+  {
+    id: 10,
+    question: "How secure are your servers?",
+    answer: [
+      "We employ 128-bit (up to 256) SSL encryption to secure the transmission of data between you and our secure data centre. Your content data is protected by the best encryption keys in the industry. In the extremely unlikely event that anyone attempts to intercept your information they would be confronted with only a stream of unintelligible data. Brain Builders is an online eLearning management system. We have the Android and IOS versions of the application. Our computers containing the software applications and your data are housed in secure, world-class, professionally run facilities.",
+    ],
+    list: [],
+  },
+  {
+    id: 11,
+    question: "What test questions are supported by Brain Builders LMS?",
+    answer: [
+      "Brain Builders questions formats can be Multiple Choice Questions (MCQs) with single or multiple correct answers, true or false questions, short answers, fill-in-the-blank questions, freeform essay questions, matching questions and sequence questions.",
+    ],
+    list: [],
+  },
+  {
+    id: 12,
+    question: "Does Brain Builders offer a test/evaluation? ",
+    answer: [
+      "Brain Builders LMS offers extensive assignment management capabilities. It uses a robust Computer Based Test (CBT) system to grade learning outcomes. The faculty creates and configures quizzes and publishes them as part of the course content while eliminating a steep learning curve generally associated with sophisticated tools. It incorporates an intuitive Quiz System for quick and easy mastery of quizzes and assignments. The faculty creates multiple question types and defines quiz time limits. Multiple Difficulty Levels and respective grading are set up for different question ranges. The LMS incorporates a Question Bank which provides a single central repository of all questions across the system.",
+    ],
+    list: [],
+  },
+  {
+    id: 13,
+    question: "What language options are available?",
     answer:
-      "What is odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, ",
+      ["Brain Builders is currently available in English. However, we are planning to add more language options."],
+  },
+  {
+    id: 14,
+    question: "What are the advantages of Brain Builders over regular learning in the classroom?",
+    answer: [
+      "Brain Builders has a lot of advantages over regular learning in classrooms.",
+      "Some of these are:",
+    ],
+    list: [
+      "Flexibility: In the regular type of learning, students usually have a fixed routine of sitting together and learning from the instructor. The duration of the class is fixed. The topics to be discussed in the class are also fixed. This is different from Brain Builders. Learning on Brain Builders is very flexible. Students can learn whatever they want, whenever they want, wherever they want. Students decide what they want to study and how much time they have to do so.",
+      "Prompt Access to Varied Resources: Students need access to different kinds of resources. These resources can be information, notes, theories, diagrams etc. These resources are available to the students at all times of the day.",
+      "Prompt Feedback Mechanism: In regular learning, tests are taken by pen and paper, and graded by the teachers before the results are availed. This takes time and can be tedious. On Brain Builders, tests are taken through the Computer Based Test (CBT) system. With this system, test are administered immediately on completion of the courses and results are obtained immediately.",
+      "Higher Retention: In regular learning. Learning is delivered by a conversation between the instructor and the students. The use of smart technology is less in the regular teaching method. A lot of concepts are abstract to the teacher and the learners! However, on Brain Builders, there is a substantial use of digital resources including presentations, multimedia involving images, audio and videos, animations etc. With the use of these resources, students get to learn more, visualise what they learn and engage more with the learning expectations. They engage and understand better the things they see rather than read. Therefore, Brain Builders increases the understanding and retention ability of the students.",
+      "Cost Effectiveness: Students engaged in regular learning have to go to school or institute regularly. This may involve transportation and associated costs. Facility maintenance costs of the school, rent, and other costs add up to increase the tuition charged. However, on Brain Builders these costs are eliminated. Learners have access to resources from anywhere they are without transport costs. Other factors which in more cost effective.",
+      "Greener Approach: The regular learning method uses pen and paper. Even tests are conducted on a pen-paper medium. These papers are made by cutting down trees. Pencils are also made of wood. Transportation to and from the school by the students and teachers increases pollution. However, learning on Brain Builders is purely digital. There is no need for paper and pens. Everything can be noted using electronic devices. Get-2-know complies with the greener approach.",
+      "Faster Learning: In regular learning, the speed of learning depends on the number of students available, the number of classrooms available and the limited period of a class. But on Brain Builders, learning speed depends on the speed and pace of the student.",
+      "Easy Updating: In regular learning methods notes have to be regularly updated by the students. This takes a lot of time. But notes are simply downloaded by the students. So they are automatically updated.",
+      "Brain Builders eliminates cultural and religious barriers to learning, reduces security threats to schools and learning facilities in volatile regions, eliminates students' proximity to learning facilities and centres, eliminates unwarranted extracurricular activities, while raising content viability and delivery, upgrading users' experience, increases the standards of education and generally stimulating students interest in learning!",
+    ],
   },
 ];
