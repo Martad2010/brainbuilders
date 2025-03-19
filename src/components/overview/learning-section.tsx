@@ -78,7 +78,7 @@ const LearningSection = () => {
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+              <p className="text-[12px] font-bold uppercase text-white lg:text-[14px]">
                 Fun and learn
               </p>
             </div>
@@ -127,7 +127,7 @@ const LearningSection = () => {
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+              <p className="text-[12px] font-bold uppercase text-white lg:text-[14px]">
                 true or false
               </p>
             </div>
@@ -216,7 +216,7 @@ const LearningSection = () => {
               className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
             />
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+              <p className="text-[12px] font-bold uppercase text-white lg:text-[14px]">
                 self challenge
               </p>
             </div>

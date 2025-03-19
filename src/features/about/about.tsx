@@ -127,3 +127,25 @@ export const PurifiedText = ({
     </>
   );
 };
+
+
+
+export const ContentWriteup = ({
+	content,
+	className,
+	span,
+}: {
+	span?: string;
+	content?: string;
+	className?: string;
+}) => {
+	const Tag: any = span || "div";
+	return (
+		<>
+			<Tag
+				className={className || ""}
+				dangerouslySetInnerHTML={createMarkup(content || "")}
+			/>
+		</>
+	);
+};
