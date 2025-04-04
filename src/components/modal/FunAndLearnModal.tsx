@@ -117,12 +117,18 @@ const FunAndLearnModal = ({
             </div>
           </>
         )}
-        <div className="mt-5 flex justify-center">
+        <div className="mt-5 flex justify-center gap-5">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="cursor-pointer rounded-[5px] bg-[#0B2239] px-10 py-3 text-center text-base font-bold capitalize text-white md:text-[22px]"
+          >
+            Back
+          </button>
           <button
             onClick={() => {
               if (active === 0 && type === "funAndLearn") {
                 if (!locationState?.typeID)
-                  return toast.info("Please Select a type");
+                  return toast.error("Please Select a type");
                 setLocationState((prev: any) => {
                   return {
                     ...prev,

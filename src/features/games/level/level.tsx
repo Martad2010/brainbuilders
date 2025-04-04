@@ -30,13 +30,24 @@ export const Level = () => {
       <OutOfCoinModal isOpen={isOutOfCoin} setIsOpen={setIsOutOfCoin} />
       <div className="container pb-[260px] pt-[96px]">
         <div className="mx-auto flex w-full flex-col items-center lg:w-[90%]">
-          <div
-            className="w-fit rounded-[10px] bg-white px-11 py-5 text-base font-bold text-[#118E96] lg:text-[30px]"
-            style={{
-              boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-            }}
-          >
-            Select level
+          <div className="flex items-center gap-3">
+            <div
+              className="w-fit cursor-pointer rounded-[10px] bg-white px-11 py-5 text-base font-bold text-[#118E96] lg:text-[30px]"
+              style={{
+                boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+              }}
+              onClick={() => router?.back()}
+            >
+              Back
+            </div>
+            <div
+              className="w-fit rounded-[10px] bg-white px-11 py-5 text-base font-bold text-[#118E96] lg:text-[30px]"
+              style={{
+                boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+              }}
+            >
+              Select level
+            </div>
           </div>
           <div className="my-11 grid grid-cols-2 gap-10 lg:grid-cols-4 xl:gap-16">
             {mainArr?.map((item: any, i: number) => (

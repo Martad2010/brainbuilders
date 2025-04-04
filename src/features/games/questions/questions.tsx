@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Countdown from "react-countdown";
 import moment from "moment";
+import { ContentWriteup } from "@/features/about";
 
 export const Questions = () => {
   const {
@@ -99,9 +100,15 @@ export const Questions = () => {
                 {/* question box */}
                 <div className="w-full rounded-xl border border-white bg-[#003645] px-4 pb-16 pt-12 md:w-[644px] md:px-14">
                   {/* question */}
-                  <div className="rounded-[5px] bg-white px-7 py-10 text-2xl font-bold text-black">
+                  {/* <div className="rounded-[5px] bg-white px-7 py-10 text-2xl font-bold text-black">
                     {currentQuestion?.question} ?
-                  </div>
+                  </div> */}
+                  {ContentWriteup({
+                    content: `${currentQuestion?.question || ""} ?`,
+                    span: "div",
+                    className:
+                      "rounded-[5px] bg-white px-7 py-10 text-2xl font-bold text-black",
+                  })}
                   <div className="mt-7 grid gap-x-[94px] gap-y-3 md:grid-cols-2">
                     <OptionsList
                       list={currentQuestion?.options}

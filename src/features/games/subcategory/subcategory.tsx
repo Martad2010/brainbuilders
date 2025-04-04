@@ -36,13 +36,24 @@ export const SubCategory = () => {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div
-            className="w-fit rounded-[10px] bg-white px-11 py-5 text-base font-bold text-[#118E96] lg:text-[30px]"
-            style={{
-              boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-            }}
-          >
-            Select a sub category
+          <div className="flex items-center gap-3">
+            <div
+              className="w-fit cursor-pointer rounded-[10px] bg-white px-11 py-5 text-base font-bold text-[#118E96] lg:text-[30px]"
+              style={{
+                boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+              }}
+              onClick={() => router?.back()}
+            >
+              Back
+            </div>
+            <div
+              className="w-fit rounded-[10px] bg-white px-11 py-5 text-base font-bold text-[#118E96] lg:text-[30px]"
+              style={{
+                boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
+              }}
+            >
+              Select a sub category
+            </div>
           </div>
           <div className="my-11 grid grid-cols-2 gap-16 xl:grid-cols-4">
             {list?.map((item: any, i: number) => (
