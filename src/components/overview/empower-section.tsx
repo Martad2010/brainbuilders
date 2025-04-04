@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const EmpowerSection = () => {
   return (
-    <div className="overview-empower-bg flex min-h-[932px] w-full pl-4 pr-4 md:pl-0 lg:max-h-[932px] lg:min-h-screen lg:pr-[76px]">
+    <div className="overview-empower-bg flex min-h-[932px] w-full pl-4 pr-4 md:pl-0 lg:min-h-screen lg:pr-[76px] py-8">
       <div className="container flex flex-col items-start justify-center md:items-end">
         <div className="w-fit">
           <div>
@@ -12,7 +12,7 @@ const EmpowerSection = () => {
                 Brighter Tomorrrow
               </span>
             </h2>
-            <p className="ml-auto mt-7 max-w-[306px] text-sm font-bold text-white md:ml-0 md:mt-0 md:max-w-[506px]">
+            <p className="mt-4 max-w-[306px] text-sm font-bold text-white md:mt-0 md:max-w-[506px]">
               Start building a successful future with Brain Builders by
               empowering yourself with knowledge and skills today. Our suite of
               features, including Play and Learn, Brain Tutor, Take Exams, and
@@ -21,14 +21,14 @@ const EmpowerSection = () => {
               achievements and unlock your full potential.
             </p>
           </div>
-          <div className="mt-20">
+          <div className="mt-14">
             <h2 className="text-[28px] font-bold text-white md:text-[32px]">
               <span className="block text-[40px] text-[#FFC43E] md:inline-block md:text-[32px]">
                 Education
               </span>{" "}
               takes you as far <br /> as you are willing to go....
             </h2>
-            <p className="ml-auto mt-7 max-w-[306px] text-sm font-bold text-white md:ml-0 md:mt-0 md:max-w-[506px]">
+            <p className="mt-4 max-w-[306px] text-sm font-bold text-white md:mt-0 md:max-w-[506px]">
               Brain Builders empowers you to take your education as far as you
               wish. Our comprehensive offerings are to provide relevant,
               curriculum-aligned content for Nigerian students and a wide range

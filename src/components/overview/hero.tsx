@@ -11,7 +11,7 @@ const Hero = () => {
     { isAuth } = useAppSelector(authUserSelector);
   return (
     <section
-      className="overview-hero-bg flex h-[932px] w-full flex-col justify-start px-4 md:h-[calc(100vh-64px)] md:max-h-[980px] md:justify-center lg:px-20"
+      className="overview-hero-bg flex h-[632px] w-full flex-col justify-start px-4 lg:h-[calc(100vh-64px)] md:max-h-[980px] md:justify-center lg:px-20"
       // style={{
       //   background: 'url("/images/overview-hero-bg.svg")',
       //   backgroundSize: "cover",
@@ -20,7 +20,7 @@ const Hero = () => {
       // }}
     >
       <div className="container">
-        <h1 className="mt-32 w-full text-[44px] font-bold text-[#0B2167] md:mt-0 md:w-[620px] md:text-[64px]">
+        <h1 className="mt-14 w-full text-[44px] font-bold text-[#0B2167] md:mt-0 md:w-[620px] md:text-[64px]">
           Catch Fun While Learning!
         </h1>
         <p className="text-base font-bold text-black md:text-[32px] lg:text-white">

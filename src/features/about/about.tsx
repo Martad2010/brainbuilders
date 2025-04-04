@@ -19,7 +19,7 @@ export const About = () => {
 
   return (
     <main className="">
-      <div className="about-bg flex h-[392px] flex-col items-center justify-center">
+      <div className="about-bg flex h-[292px] md:h-[392px] flex-col items-center justify-center">
         <h1 className="text-[32px] font-bold text-white md:text-5xl md:font-black">
           About us
         </h1>
