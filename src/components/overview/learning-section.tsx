@@ -24,7 +24,7 @@ const LearningSection = () => {
   return (
     <section
       id="main"
-      className="flex min-h-[870px] w-full flex-col items-center xl:max-h-[870px] xl:min-h-screen"
+      className="flex h-[632px] lg:min-h-[870px] w-full flex-col items-center xl:max-h-[870px] xl:min-h-screen"
       style={{
         background: 'url("/images/overview-learn-bg.svg")',
         backgroundSize: "cover",
@@ -69,16 +69,17 @@ const LearningSection = () => {
               className="h-[52px] w-[104px] object-cover lg:h-[93px] lg:w-[178px]"
             />
           </div>
-          <div className="absolute bottom-6 left-[33px] rounded-b-full lg:bottom-11 lg:left-[66px]">
+          <div className="absolute bottom-6 left-[32px] rounded-b-full lg:bottom-12 lg:left-[66px]">
             <Image
               src={"/images/learn-vector.svg"}
               alt="vector"
               width={161}
               height={55}
-              className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
+              className="hidden h-[55px] w-[161px] lg:block"
             />
+            <div className="h-[50px] w-[98px] rounded-b-full bg-[#00ACCA] lg:hidden"></div>
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold uppercase text-white lg:text-[14px]">
+              <p className="w-[80px] text-center text-xs font-bold uppercase text-white lg:w-full lg:text-sm">
                 Fun and learn
               </p>
             </div>
@@ -124,10 +125,11 @@ const LearningSection = () => {
               alt="vector"
               width={161}
               height={55}
-              className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
+              className="hidden h-[55px] w-[161px] lg:block"
             />
+            <div className="h-[50px] w-[98px] rounded-b-full bg-[#FD8500] lg:hidden"></div>
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold uppercase text-white lg:text-[14px]">
+              <p className="w-[80px] text-center text-xs font-bold uppercase text-white lg:w-full lg:text-sm">
                 true or false
               </p>
             </div>
@@ -167,16 +169,17 @@ const LearningSection = () => {
               className="h-[52px] w-[104px] object-cover lg:h-[93px] lg:w-[178px]"
             />
           </div>
-          <div className="absolute bottom-6 left-[36px] rounded-b-full lg:bottom-11 lg:left-[68px]">
+          <div className="absolute bottom-6 left-[33px] rounded-b-full lg:bottom-11 lg:left-[68px]">
             <Image
               src={"/images/Vector 3.svg"}
               alt="vector"
               width={161}
               height={55}
-              className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
+              className="hidden h-[55px] w-[161px] lg:block"
             />
+            <div className="h-[50px] w-[98px] rounded-b-full bg-[#1485CA] lg:hidden"></div>
             <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold uppercase text-white lg:text-base">
+              <p className="w-[80px] text-center text-xs font-bold uppercase text-white lg:w-full lg:text-sm">
                 math mania
               </p>
             </div>
@@ -207,17 +210,18 @@ const LearningSection = () => {
               className="h-[52px] w-[104px] object-cover lg:h-[93px] lg:w-[178px]"
             />
           </div>
-          <div className="absolute bottom-6 left-[33px] rounded-b-full lg:bottom-11 lg:left-[66px]">
+          <div className="absolute bottom-6 left-[32px] rounded-b-full lg:bottom-11 lg:left-[60px]">
             <Image
               src={"/images/Vector 4.svg"}
               alt="vector"
               width={161}
               height={55}
-              className="h-[31px] w-[95px] lg:h-[55px] lg:w-[161px]"
+              className="hidden h-[55px] w-[173px] object-contain lg:block"
             />
-            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="text-[12px] font-bold uppercase text-white lg:text-[14px]">
-                self challenge
+            <div className="h-[50px] w-[100px] rounded-b-full bg-[#4A4E4F] lg:hidden"></div>
+            <div className="absolute inset-0 flex cursor-pointer justify-center pt-1">
+              <p className="text-center text-xs font-bold uppercase text-white lg:text-sm">
+                self <br /> challenge
               </p>
             </div>
           </div>

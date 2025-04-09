@@ -199,6 +199,7 @@ const Header = () => {
                             textDecoration: "none !important",
                           }}
                           to={navLink.href.substring(1)}
+                          onClick={() => setShowMobileMenu(false)}
                           smooth={true}
                           duration={500}
                           className={`satoshi cursor-pointer font-medium ${
@@ -212,7 +213,8 @@ const Header = () => {
                       ) : (
                         <Link
                           prefetch
-                          href={navLink.href}
+                            href={navLink.href}
+                            onClick={() => setShowMobileMenu(false)}
                           className={`satoshi font-medium ${
                             pathname === navLink.href
                               ? "text-[#F17700]"

@@ -2,13 +2,13 @@ import Image from "next/image";
 
 const KnowledgeSection = () => {
   return (
-    <div className="overview-knowledge-bg flex min-h-[932px] w-full pb-0 pl-4 pr-4 md:pb-40 md:pl-0 lg:max-h-[932px] lg:min-h-screen lg:pb-0 xl:pr-[65px]">
+    <div className="overview-knowledge-bg flex min-h-[632px] md:min-h-[932px] w-full pb-0 pl-4 pr-4 md:pb-10 md:pl-0 lg:max-h-[932px] lg:min-h-screen lg:pb-0 xl:pr-[65px]">
       <div className="container flex flex-col items-start justify-start md:items-end md:justify-end lg:justify-center">
         <div className="w-fit">
-          <h3 className="mt-[105px] w-[90%] text-4xl font-bold text-[#002724] md:mt-0 md:w-full md:text-[32px] md:font-black">
+          <h3 className="mt-[35px] w-[90%] text-3xl font-bold text-[#002724] md:mt-0 md:w-full md:text-[32px] md:font-black">
             Improve your Basic Knowledge
           </h3>
-          <p className="mt-6 max-w-[537px] font-normal text-[#002724] md:mt-0 md:font-black">
+          <p className="mt-4 max-w-[537px] font-normal text-[#002724] md:mt-0 md:font-black">
             Embark on a comprehensive learning journey with Brain Builders. Play
             and Learn makes education exciting with games that teach and
             entertain. Brain Tutor personalises your study experience, offering
