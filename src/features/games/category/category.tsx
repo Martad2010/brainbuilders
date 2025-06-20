@@ -225,7 +225,7 @@ export const useLevelNavigator = () => {
   useEffect(() => {
     apiCall({
       type: "get",
-      url: `/api/v1/level?_populate=image&_limit=0`,
+      url: `/api/v1/level?_limit=0`,
       getter: (d: any) =>
         dispatch(getDynamicCategoryLogger({ ...d, prop: "level" })),
     });
