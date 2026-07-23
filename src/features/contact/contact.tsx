@@ -176,7 +176,7 @@ export const Contact = () => {
               You can fill this form or drop <br /> an email to
             </p>
             {/* email */}
-            <div className="mt-4 flex w-full items-center justify-center gap-6 rounded-full bg-[#118E96] py-3">
+            <div className="mt-4 hidden w-full items-center justify-center gap-6 rounded-full bg-[#118E96] py-3">
               <EnvelopeIcon className="h-6 w-6 text-white" />{" "}
               <span className="satoshi text-xm text-white">
                 info@examprimed.com
@@ -186,7 +186,7 @@ export const Contact = () => {
             <div className="mt-4 flex w-full items-center justify-center gap-6 rounded-full border-2 border-[#118E96] py-3">
               <PhoneIcon className="h-6 w-6 text-black" />{" "}
               <span className="satoshi text-xm text-black">
-                +234 7043303000
+                +234 707 033 1992
               </span>
             </div>
             {/* whatsapp */}
@@ -198,7 +198,7 @@ export const Contact = () => {
                 height={48}
                 className="h-6 w-6 object-cover"
               />
-              <span className="satoshi text-xm text-black">07043303000</span>
+              <span className="satoshi text-xm text-black">+234 707 033 1992</span>
             </div>
             {/* facebook */}
             <div className="mt-4 flex w-full items-center justify-center gap-6 rounded-full border-2 border-[#118E96] py-3">
