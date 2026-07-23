@@ -227,11 +227,6 @@ export const footerLinks = [
         name: "+234 809 293 3330",
         href: "tel:+2348092933330",
       },
-      {
-        id: 4,
-        name: "info@examprimed.com",
-        href: "mailto:info@examprimed.com",
-      },
     ],
   },
 ];
