@@ -219,8 +219,8 @@ export const footerLinks = [
       },
       {
         id: 2,
-        name: "+234 704 330 3000",
-        href: "tel:+2347043303000",
+        name: "+234 707 033 1992",
+        href: "tel:+2347070331992",
       },
       {
         id: 3,
