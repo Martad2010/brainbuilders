@@ -77,15 +77,11 @@ const PaystackModal = ({
               ? "BBW"
               : "BBD";
 
-      if (locationState?.item?.type === "CoinPurchase5000")
-        plan_id = "CoinPurchase5000";
-      if (locationState?.item?.type === "CoinPurchase10000")
-        plan_id = "CoinPurchase10000";
+      if (locationState?.item?.type?.startsWith("CoinPurchase"))
+        plan_id = locationState?.item?.type;
 
       const res = await axios.post(
-        ["CoinPurchase5000", "CoinPurchase10000"]?.includes(
-          locationState?.item?.type,
-        )
+        locationState?.item?.type?.startsWith("CoinPurchase")
           ? "/api/v1/subscription"
           : "/api/v1/subscription/paystack",
         {

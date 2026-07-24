@@ -1,253 +1,117 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { GlobalState } from "@/data/Context";
-import Image from "next/image";
+
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import React, { useContext, useEffect, useState } from "react";
-import FunAndLearnModal from "../modal/FunAndLearnModal";
+import { GlobalState } from "@/data/Context";
 import { useAppSelector } from "@/data/store/hooks";
 import { authUserSelector } from "@/data/store/selectors/userSelector";
+import FunAndLearnModal from "../modal/FunAndLearnModal";
+import LearningCard from "./LearningCard";
 
 const LearningSection = () => {
-  const router = useRouter(),
-    { setLocationState } = useContext(GlobalState),
-    [isFunAndLearn, setIsFunAndLearn] = useState(false),
-    { isAuth } = useAppSelector(authUserSelector);
+  const router = useRouter();
+
+  const { setLocationState } = useContext(GlobalState);
+
+  const { isAuth } = useAppSelector(authUserSelector);
+
+  const [isFunAndLearn, setIsFunAndLearn] = useState(false);
 
   useEffect(() => {
     setLocationState(null);
     router.prefetch("/games/category");
     router.prefetch("/games/questions");
     router.prefetch("/login");
-  }, []);
+  }, [router, setLocationState]);
+
+  const navigate = (callback: () => void) => {
+    if (!isAuth) {
+      router.push("/login");
+      return;
+    }
+
+    callback();
+  };
+
+  const cards = useMemo(
+    () => [
+      {
+        label: "Fun and Learn",
+        frameImage: "/images/learnA.svg",
+        topImage: "/images/Play and learn.svg",
+        vectorImage: "/images/learn-vector.svg",
+        color: "#00ACCA",
+        onClick: () =>
+          navigate(() => {
+            setIsFunAndLearn(true);
+          }),
+      },
+      {
+        label: "True or False",
+        frameImage: "/images/learnB.svg",
+        mobileFrameImage: "/images/mobile-learn-B.svg",
+        topImage: "/images/Brain Tutor.svg",
+        vectorImage: "/images/Vector 2.svg",
+        color: "#FD8500",
+        onClick: () =>
+          navigate(() => {
+            setLocationState({ type: "trueOrFalse" });
+            router.push("/games/questions");
+          }),
+      },
+      {
+        label: "Math Mania",
+        frameImage: "/images/mobile-learn-C.svg",
+        mobileFrameImage: "/images/mobile-learn-C.svg",
+        topImage: "/images/Take Exams.svg",
+        vectorImage: "/images/Vector 3.svg",
+        color: "#1485CA",
+        onClick: () =>
+          navigate(() => {
+            setLocationState({ type: "mathQuiz" });
+            router.push("/games/category");
+          }),
+      },
+      {
+        label: "Self Challenge",
+        frameImage: "/images/learnD.svg",
+        topImage: "/images/Challenge Yourself.svg",
+        vectorImage: "/images/Vector 4.svg",
+        color: "#4A4E4F",
+        onClick: () =>
+          navigate(() => {
+            setLocationState({ type: "selfChallenge" });
+            router.push("/games/questions");
+          }),
+      },
+    ],
+    [isAuth]
+  );
 
   return (
     <section
       id="main"
-      className="flex h-[632px] lg:min-h-[870px] w-full flex-col items-center xl:max-h-[870px] xl:min-h-screen"
+      className="flex min-h-screen w-full flex-col items-center bg-cover bg-center bg-no-repeat px-4 py-10 lg:py-16 lg:px-32"
       style={{
-        background: 'url("/images/overview-learn-bg.svg")',
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundImage: 'url("/images/overview-learn-bg.svg")',
       }}
     >
       <button
-        // onClick={() => router.push("/games/category")}
-        className="mt-12 cursor-pointer rounded-[40px] bg-white px-[50px] py-[9px] text-[22px] font-bold text-[#118E96] md:text-[32px] xl:mt-8"
-        style={{
-          boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.20)",
-        }}
+        className="rounded-full bg-white px-10 py-3 text-xl font-bold text-[#118E96] shadow-lg transition hover:scale-105 lg:px-14 lg:text-3xl"
       >
         Click to Learn
       </button>
-      <div className="mt-[83px] flex w-fit flex-wrap items-center justify-center gap-[18px] lg:mt-[60px]">
-        <div
-          className="relative cursor-pointer"
-          onClick={() => {
-            if (isAuth) setIsFunAndLearn(true);
-            else router.push("/login");
-          }}
-          // onClick={() => {
-          //   setLocationState({ type: "funAndLearn" });
-          //   router.push("/games/category");
-          // }}
-        >
-          <Image
-            src={"/images/learnA.svg"}
-            alt="learn"
-            width={1048}
-            height={966}
-            className="h-[150px] w-[164px] object-cover lg:h-[267px] lg:w-[295px]"
-          />
-          <div className="absolute left-[30px] top-5 lg:left-[57px] lg:top-11">
-            <Image
-              src={"/images/Play and learn.svg"}
-              alt="play and learn"
-              width={671}
-              height={337}
-              className="h-[52px] w-[104px] object-cover lg:h-[93px] lg:w-[178px]"
-            />
-          </div>
-          <div className="absolute bottom-6 left-[32px] rounded-b-full lg:bottom-12 lg:left-[66px]">
-            <Image
-              src={"/images/learn-vector.svg"}
-              alt="vector"
-              width={161}
-              height={55}
-              className="hidden h-[55px] w-[161px] lg:block"
-            />
-            <div className="h-[50px] w-[98px] rounded-b-full bg-[#00ACCA] lg:hidden"></div>
-            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="w-[80px] text-center text-xs font-bold uppercase text-white lg:w-full lg:text-sm">
-                Fun and learn
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="relative cursor-pointer"
-          onClick={() => {
-            if (isAuth) {
-              setLocationState({ type: "trueOrFalse" });
-              router.push("/games/questions");
-            } else router.push("/login");
-          }}
-        >
-          {/* mobile image */}
-          <Image
-            src={"/images/mobile-learn-B.svg"}
-            alt="learn"
-            width={163}
-            height={150}
-            className="lg:hidden"
-          />
-          {/* desktop image */}
-          <Image
-            src={"/images/learnB.svg"}
-            alt="learn"
-            width={1049}
-            height={966}
-            className="hidden h-[262px] w-[296px] object-cover lg:block"
-          />
-          <div className="absolute left-[30px] top-5 lg:left-[58px] lg:top-11">
-            <Image
-              src={"/images/Brain Tutor.svg"}
-              alt="brain and tutor"
-              width={670}
-              height={337}
-              className="h-[52px] w-[104px] object-cover lg:h-[93px] lg:w-[178px]"
-            />
-          </div>
-          <div className="absolute bottom-6 left-[33px] rounded-b-full lg:bottom-11 lg:left-[66px]">
-            <Image
-              src={"/images/Vector 2.svg"}
-              alt="vector"
-              width={161}
-              height={55}
-              className="hidden h-[55px] w-[161px] lg:block"
-            />
-            <div className="h-[50px] w-[98px] rounded-b-full bg-[#FD8500] lg:hidden"></div>
-            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="w-[80px] text-center text-xs font-bold uppercase text-white lg:w-full lg:text-sm">
-                true or false
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="relative cursor-pointer"
-          onClick={() => {
-            if (isAuth) {
-              setLocationState({ type: "mathQuiz" });
-              router.push("/games/category");
-            } else router.push("/login");
-          }}
-        >
-          {/* mobile view */}
-          <Image
-            src={"/images/mobile-learn-C.svg"}
-            alt="learn"
-            width={163}
-            height={150}
-            className="h-[150px] w-[163px] object-cover lg:h-[267px] lg:w-[299px]"
-          />
-          {/* desktop view */}
-          {/* <Image
-            src={"/images/learnC.png"}
-            alt="learn"
-            width={296}
-            height={268}
-            className="hidden lg:block"
-          /> */}
-          <div className="absolute left-[30px] top-5 lg:left-[60px] lg:top-11">
-            <Image
-              src={"/images/Take Exams.svg"}
-              alt="take exams"
-              width={671}
-              height={337}
-              className="h-[52px] w-[104px] object-cover lg:h-[93px] lg:w-[178px]"
-            />
-          </div>
-          <div className="absolute bottom-6 left-[33px] rounded-b-full lg:bottom-11 lg:left-[68px]">
-            <Image
-              src={"/images/Vector 3.svg"}
-              alt="vector"
-              width={161}
-              height={55}
-              className="hidden h-[55px] w-[161px] lg:block"
-            />
-            <div className="h-[50px] w-[98px] rounded-b-full bg-[#1485CA] lg:hidden"></div>
-            <div className="absolute inset-0 flex cursor-pointer items-center justify-center">
-              <p className="w-[80px] text-center text-xs font-bold uppercase text-white lg:w-full lg:text-sm">
-                math mania
-              </p>
-            </div>
-          </div>
-        </div>
-        <div
-          className="relative cursor-pointer"
-          onClick={() => {
-            if (isAuth) {
-              setLocationState({ type: "selfChallenge" });
-              router.push("/games/questions");
-            } else router.push("/login");
-          }}
-        >
-          <Image
-            src={"/images/learnD.svg"}
-            alt="learn"
-            width={1048}
-            height={966}
-            className="h-[150px] w-[164px] object-cover lg:h-[267px] lg:w-[295px]"
-          />
-          <div className="absolute left-[30px] top-5 lg:left-[57px] lg:top-11">
-            <Image
-              src={"/images/Challenge Yourself.svg"}
-              alt="challenge yourself"
-              width={671}
-              height={337}
-              className="h-[52px] w-[104px] object-cover lg:h-[93px] lg:w-[178px]"
-            />
-          </div>
-          <div className="absolute bottom-6 left-[32px] rounded-b-full lg:bottom-11 lg:left-[60px]">
-            <Image
-              src={"/images/Vector 4.svg"}
-              alt="vector"
-              width={161}
-              height={55}
-              className="hidden h-[55px] w-[173px] object-contain lg:block"
-            />
-            <div className="h-[50px] w-[100px] rounded-b-full bg-[#4A4E4F] lg:hidden"></div>
-            <div className="absolute inset-0 flex cursor-pointer justify-center pt-1">
-              <p className="text-center text-xs font-bold uppercase text-white lg:text-sm">
-                self <br /> challenge
-              </p>
-            </div>
-          </div>
-        </div>
+
+      <div className="mt-14 grid w-full grid-cols-2 place-items-center gap-y-8 md:gap-x-8 lg:mt-20 lg:grid-cols-4 lg:gap-x-8 xl:gap-x-12">
+        {cards.map((card) => (
+          <LearningCard key={card.label} {...card} />
+        ))}
       </div>
-      {/* <div className="mt-[80px] flex items-center gap-7">
-        <div className="cursor-pointer">
-          <Image
-            src="/images/google-play.svg"
-            alt="google-play"
-            width={204}
-            height={192}
-            className="h-[23px] w-[74px] rounded object-cover md:h-[47px] md:w-[150px] md:rounded-lg"
-          />
-        </div>
-        <div className="cursor-pointer">
-          <Image
-            src="/images/apple-store.svg"
-            alt="apple-store"
-            width={150}
-            height={45}
-            className="h-[22px] w-[74px] rounded object-cover md:h-[45px] md:w-[150px] md:rounded-lg"
-          />
-        </div>
-      </div> */}
-      <FunAndLearnModal isOpen={isFunAndLearn} setIsOpen={setIsFunAndLearn} />
+
+      <FunAndLearnModal
+        isOpen={isFunAndLearn}
+        setIsOpen={setIsFunAndLearn}
+      />
     </section>
   );
 };

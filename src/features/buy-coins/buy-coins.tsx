@@ -55,7 +55,7 @@ export const BuyCoins = () => {
               <div
                 key={item.id}
                 onClick={() => {
-                  if (item?.link) window.open(item?.link, "_blank");
+                  // if (item?.link) window.open(item?.link, "_blank");
 
                   if (item?.type) setCoinType(item);
                 }}
