@@ -1,19 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
 
 interface LearningCardProps {
   frameImage: string;
-  topImage: string;
-  vectorImage?: string;
   mobileFrameImage?: string;
+  topImage: string;
+  vectorImage: string;
   label: string;
   color: string;
   onClick: () => void;
 }
 
-const LearningCard = ({
+export default function LearningCard({
   frameImage,
   mobileFrameImage,
   topImage,
@@ -21,11 +20,30 @@ const LearningCard = ({
   label,
   color,
   onClick,
-}: LearningCardProps) => {
+}: LearningCardProps) {
   return (
     <button
       onClick={onClick}
-      className="group relative aspect-[164/150] w-full max-w-[170px] transition-transform duration-300 hover:scale-105 lg:max-w-[340px] xl:max-w-[380px]"
+      className="
+        relative
+        cursor-pointer
+        border-0
+        bg-transparent
+        p-0
+
+        w-[164px]
+        h-[150px]
+
+        lg:w-[295px]
+        lg:h-[267px]
+
+        xl:w-[325px]
+        xl:h-[295px]
+
+        transition-transform
+        duration-300
+        hover:scale-[1.03]
+      "
     >
       {/* Mobile */}
       {mobileFrameImage ? (
@@ -34,15 +52,15 @@ const LearningCard = ({
           alt={label}
           width={163}
           height={150}
-          className="block h-full w-full object-contain lg:hidden"
+          className="block lg:hidden"
         />
       ) : (
         <Image
           src={frameImage}
           alt={label}
-          width={295}
-          height={267}
-          className="block h-full w-full object-contain lg:hidden"
+          width={164}
+          height={150}
+          className="block lg:hidden"
         />
       )}
 
@@ -50,54 +68,117 @@ const LearningCard = ({
       <Image
         src={frameImage}
         alt={label}
-        width={295}
-        height={267}
-        className="hidden h-full w-full object-contain lg:block"
+        width={1048}
+        height={966}
+        className="
+          hidden
+          lg:block
+
+          w-[295px]
+          h-[267px]
+
+          xl:w-[325px]
+          xl:h-[295px]
+        "
       />
 
-      {/* Top illustration */}
-      <div className="absolute left-1/2 top-[14%] lg:top-[16%] -translate-x-1/2">
+      {/* ========= TOP TITLE IMAGE ========= */}
+
+      <div
+        className="
+          absolute
+
+          left-1/2
+          -translate-x-1/2
+
+          top-[20px]
+
+          lg:top-[50px]
+
+          xl:top-[55px]
+        "
+      >
         <Image
           src={topImage}
           alt={label}
-          width={178}
-          height={93}
-         className="h-[52px] w-[104px] object-contain lg:h-[105px] lg:w-[200px] xl:h-[118px] xl:w-[220px]"
+          width={671}
+          height={337}
+          className="
+            w-[104px]
+            h-[52px]
+
+            lg:w-[178px]
+            lg:h-[93px]
+
+            xl:w-[195px]
+            xl:h-[102px]
+          "
         />
       </div>
 
-      {/* Bottom banner */}
-      <div className="absolute bottom-[12%] lg:bottom-[9%] left-1/2 -translate-x-1/2">
-        {vectorImage ? (
-          <>
-            <Image
-              src={vectorImage}
-              alt=""
-              width={200}
-              height={70}
-              className="hidden lg:block w-[190px] xl:w-[205px]"
-            />
-            <div
-              className="h-[48px] w-[100px] rounded-b-full lg:hidden"
-              style={{ backgroundColor: color }}
-            />
-          </>
-        ) : (
-          <div
-            className="h-[48px] w-[100px] rounded-b-full lg:hidden"
-            style={{ backgroundColor: color }}
-          />
-        )}
+      {/* ========= BOTTOM VECTOR ========= */}
 
-        <div className="absolute inset-0 flex items-center justify-center px-2">
+      <div
+        className="
+          absolute
+
+          left-1/2
+          -translate-x-1/2
+
+          bottom-[28px]
+
+          lg:bottom-[54px]
+
+          xl:bottom-[58px]
+        "
+      >
+        <Image
+          src={vectorImage}
+          alt=""
+          width={161}
+          height={55}
+          className="
+            hidden
+
+            lg:block
+
+            w-[161px]
+
+            xl:w-[180px]
+          "
+        />
+
+        <div
+          className="h-[50px] w-[98px] rounded-b-full lg:hidden"
+          style={{
+            background: color,
+          }}
+        />
+
+        <div className="absolute inset-0 flex items-center justify-center">
           <p
-    className="w-[90px] text-center text-[11px] font-bold uppercase leading-tight text-white lg:w-[170px] lg:text-[15px] xl:w-[190px]">
+            className="
+              text-center
+              font-bold
+              uppercase
+              text-white
+
+              w-[85px]
+              text-[11px]
+              leading-[13px]
+
+              lg:w-[145px]
+              lg:text-[13px]
+              lg:leading-[16px]
+
+              xl:w-[165px]
+              xl:text-[14px]
+            "
+          >
             {label}
           </p>
         </div>
       </div>
     </button>
   );
-};
-
-export default LearningCard;
+}
