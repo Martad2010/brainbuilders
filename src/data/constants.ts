@@ -227,6 +227,11 @@ export const footerLinks = [
         name: "+234 809 293 3330",
         href: "tel:+2348092933330",
       },
+      {
+        id: 4,
+        name: "support@mybrain-builder.com",
+        href: "mailto:support@mybrain-builder.com",
+      },
     ],
   },
 ];
